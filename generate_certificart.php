@@ -18,11 +18,11 @@ use Dompdf\Dompdf;
     // Remplace les variables dans le modèle par les valeurs dynamiques
     $template->setValue('nom_prenom', $nom_prenom);
     $template->setValue('date', $date);
-    $template->setValue('titre_formation', $titre_formation);
+    $template->setValue('title', $title);
 
     // Nom du fichier de sortie
     $fichier_sortie = 'attestation_'.$nom_prenom.'.pdf';
-	$chemin_sortie = __DIR__ . "/certificates/" . $fichier_sortie;
+	$chemin_sortie = __DIR__ . "/attestations/certificates/" . $fichier_sortie;
 	
     // Génère le fichier
     $template->saveAs($fichier_sortie);

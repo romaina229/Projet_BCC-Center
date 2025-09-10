@@ -37,7 +37,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 try {
-    $pdo = new PDO("mysql:host=localhost;dbname=bcc_center;charset=utf8", "root", "");
+    $pdo = new PDO("mysql:host=localhost;dbname=bcc_formation;charset=utf8", "root", "");
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (Exception $e) {
     die("Erreur connexion BDD : " . $e->getMessage());

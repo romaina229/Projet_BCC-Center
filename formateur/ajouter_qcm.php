@@ -10,7 +10,7 @@ $stmt = $pdo->prepare("SELECT id, titre FROM formations WHERE formateur_id = ?")
 $stmt->execute([$_SESSION['id']]);
 $formations = $stmt->fetchAll();
 ?>
-<form method="POST">
+<form method="POST" onsubmit="return confirm('Créer ce QCM ?')">
     Formation: <select name="formation_id">
     <?php foreach ($formations as $f): ?>
         <option value="<?= $f['id'] ?>"><?= $f['titre'] ?></option>
@@ -20,3 +20,8 @@ $formations = $stmt->fetchAll();
     Seuil (%): <input type="number" name="seuil" value="65"><br>
     <button type="submit">Créer</button>
 </form>
+<script>
+    function confirm(message) {
+        return window.confirm(message);
+    }
+</script>

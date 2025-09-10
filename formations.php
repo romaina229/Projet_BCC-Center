@@ -10,7 +10,7 @@
 <header class="sticky top-0 z-40 bg-white/80 backdrop-blur border-b">
   <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
     <a href="/index.php" class="flex items-center gap-2 font-semibold">
-      <span class="inline-block w-8 h-8 rounded-2xl bg-indigo-600"></span>
+      <span class="inline-block w-8 h-8 rounded-2xl bg-indigo-600"><img src="/assets/images/logo bcc.png" alt="Logo BCC-Center" class="logo"></span>
       <span>BCC-Center</span>
     </a>
     <nav x-data="{open:false}" class="relative">

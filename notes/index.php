@@ -15,12 +15,13 @@ $badges = $badges->fetchAll();
 <title>BCC-Center</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body class="bg-gray-50 text-gray-900">
 <header class="sticky top-0 z-40 bg-white/80 backdrop-blur border-b">
   <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
     <a href="/index.php" class="flex items-center gap-2 font-semibold">
-      <span class="inline-block w-8 h-8 rounded-2xl bg-indigo-600"></span>
+      <span class="inline-block w-8 h-8 rounded-2xl bg-indigo-600"><img src="/assets/images/logo bcc.png" alt="Logo BCC-Center" class="logo"></span>
       <span>BCC-Center</span>
     </a>
     <nav x-data="{open:false}" class="relative">
@@ -45,25 +46,30 @@ $badges = $badges->fetchAll();
   </div>
 </header>
 <main class="max-w-7xl mx-auto px-4 py-8">
-
-<h1 class="text-2xl font-bold mb-4">Notes & Badges</h1>
-<section class="grid md:grid-cols-2 gap-6">
-  <div class="bg-white rounded-2xl border shadow p-6">
-    <h2 class="font-semibold mb-3">Notes</h2>
-    <ul class="text-sm space-y-2">
-      <?php foreach($notes as $n): ?>
-      <li>Exercice: <a class="text-indigo-600" href="<?php echo htmlspecialchars($n['path']); ?>" target="_blank">fichier</a> — Note: <strong><?php echo intval($n['score']); ?>/100</strong></li>
-      <?php endforeach; ?>
-    </ul>
+<div class="bg-white rounded-2xl border shadow p-6">
+  <h2 class="font-semibold mb-3">Badges</h2>
+  <div class="flex flex-wrap gap-2">
+    <?php foreach($badges as $b): ?>
+      <?php
+        $icon = '';
+        if ($b['label'] === 'Excellent') {
+          // Icône étoile (Heroicons)
+          $icon = '<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline" fill="gold" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.571 8.332 1.151-6.064 5.795 1.548 8.312L12 18.896l-7.484 4.52 1.548-8.312L0 9.309l8.332-1.151z"/></svg>';
+        } elseif ($b['label'] === 'Médiocre') {
+          // Icône pouce vers le bas (Font Awesome exemple)
+          $icon = '<i class="fas fa-thumbs-down text-red-500"></i>';
+        } else {
+          // Badge générique
+          $icon = '<i class="fas fa-certificate text-gray-500"></i>';
+        }
+      ?>
+      <span class="px-3 py-1 rounded-full bg-indigo-100 text-indigo-700 text-sm flex items-center gap-1">
+        <?php echo $icon; ?>
+        <?php echo htmlspecialchars($b['label']); ?>
+      </span>
+    <?php endforeach; ?>
   </div>
-  <div class="bg-white rounded-2xl border shadow p-6">
-    <h2 class="font-semibold mb-3">Badges</h2>
-    <div class="flex flex-wrap gap-2">
-      <?php foreach($badges as $b): ?>
-      <span class="px-3 py-1 rounded-full bg-indigo-100 text-indigo-700 text-sm"><?php echo htmlspecialchars($b['label']); ?></span>
-      <?php endforeach; ?>
-    </div>
-  </div>
+</div>
 </section>
 </main>
 <footer class="border-t mt-12">

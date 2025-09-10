@@ -32,8 +32,8 @@ $users = $stmt->fetchAll();
         <li><a class="hover:text-indigo-600" href="/index.php">Accueil</a></li>
         <li><a class="hover:text-indigo-600" href="/formations.php">Formations</a></li>
         <li><a class="hover:text-indigo-600" href="/forum/index.php">Forum</a></li>
-        <li><a class="hover:text-indigo-600 font-bold" href="/qcm/users.php">Utilisateurs</a></li>
-        <li><a class="hover:text-red-600" href="/auth/logout.php">Déconnexion</a></li>
+        <li><a class="hover:text-indigo-600 font-bold" href="/auth/user.php">Utilisateurs</a></li>
+        <li><a class="hover:text-red-600" href="./auth/logout.php">Déconnexion</a></li>
       </ul>
     </nav>
   </div>

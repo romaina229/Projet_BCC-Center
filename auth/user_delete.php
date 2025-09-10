@@ -10,7 +10,7 @@ $id = intval($_GET['id'] ?? 0);
 
 // Empêcher l’admin de supprimer son propre compte
 if ($id == current_user()['id']) {
-    die("❌ Vous ne pouvez pas supprimer votre propre compte !");
+    die("Vous ne pouvez pas supprimer votre propre compte !");
 }
 
 $stmt = $pdo->prepare("DELETE FROM users WHERE id = ?");

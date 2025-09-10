@@ -18,7 +18,7 @@ VALUES (
   'nounonvenanromain@gmail.com',
   'bcc-center',
   -- Mot de passe hashé : Admain@bcc2025
-  '$2y$10$GLjFG2bAcT5a1S9S97NTYOA7AdoH.9nCDmtmpsQiDqI5K6yRHkUS6',
+  '$2y$10$ddQdTXyN1GdX7XO6fu0.5u0P0DFb0KGlXMHq4H8dDhcyW7J0z2weq',
   'admin',
   'Administrateur BCC-Center'
 );

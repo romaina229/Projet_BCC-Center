@@ -54,8 +54,8 @@ $user = $stmt->fetch();
     </a>
     <nav>
       <ul class="flex gap-6 items-center">
-        <li><a class="hover:text-indigo-600" href="/participant/index.php">Formations</a></li>
-        <li><a class="hover:text-indigo-600" href="/auth/users.php">Utilisateurs</a></li>
+        <li><a class="hover:text-indigo-600" href="/formation_passer/index.php">Formations</a></li>
+        <li><a class="hover:text-indigo-600" href="/auth/profile.php">Utilisateurs</a></li>
         <li><a class="hover:text-red-600" href="/auth/logout.php">Déconnexion</a></li>
       </ul>
     </nav>

@@ -14,7 +14,7 @@ $u = current_user(); if ($u['role']!=='formateur' && $u['role']!=='admin') { htt
 <header class="sticky top-0 z-40 bg-white/80 backdrop-blur border-b">
   <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
     <a href="/index.php" class="flex items-center gap-2 font-semibold">
-      <span class="inline-block w-20 h-20 b-2-s"><img src="./formation_passer/logo bcc.png" alt="Logo BCC-Center" class="logo"></span>
+      <span class="inline-block w-20 h-20 b-2-s"><img src="/assets/images/logo bcc.png" alt="Logo BCC-Center" class="logo"></span>
       <span>BCC-Center</span>
     </a>
     <nav x-data="{open:false}" class="relative">
@@ -46,7 +46,7 @@ $u = current_user(); if ($u['role']!=='formateur' && $u['role']!=='admin') { htt
   <a href="/formateur/evaluations.php" class="p-6 bg-white rounded-2xl border shadow">Évaluer les exercices des participants</a>
   <a href="/formateur/temoins.php" class="p-6 bg-white rounded-2xl border shadow">Créer une formation</a>
   <a href="/qcm/builder.php" class="p-6 bg-white rounded-2xl border shadow">Créer un QCM personnalisé en fichier json</a>
-  <a href="/formateur/ajouter_qcm.php" class="p-6 bg-white rounded-2xl border shadow">Créer un QCM normal</a>
+  <a href="/formateur/ajouter_qcm.php" class="p-6 bg-white rounded-2xl border shadow">Créer un QCM simple</a>
 </div>
 </main>
 <footer class="border-t mt-12">

@@ -10,7 +10,7 @@ body {
 
 /* === Header === */
 header {
-    background: #004080;
+    background: #0c1824;
     color: white;
     padding: 5px;
     text-align: center;
@@ -19,27 +19,37 @@ header {
     display: flex;
     justify-content:around;
     align-items: center;
-    gap: 100px;
+    gap: 60px;
 	text-align : center;
-	font-size : 40px;
+	font-size : 35px;
 }
 
 .logo {
     width: 90px;
     height: 100px;
     padding-top: 5px;
-	padding-bottom: 5px;
+	  padding-bottom: 5px;
     border-radius: 50%; /* Logo rond */
     object-fit: cover;
 }
-.slogan {
-    font-style: italic;
+.slogan1 {
+    font-style: italic, bold;
     /*margin-top: 15px;*/
 	text-align : center;
 	padding-bottom : 30px;
 	padding-top : 0 0 5px;
 	font-size : 24px;
-	color :red;
+	color :rgb(218, 245, 68);
+}
+
+.slogan {
+    font-style: italic;
+    /*margin-top: 15px;*/
+	text-align : justify;
+	padding-bottom : 30px;
+	padding-top : 0 0 5px;
+	font-size : 18px;
+	color :rgb(12, 11, 11);
 }
 
 /* === Section introduction === */
@@ -64,14 +74,13 @@ header {
     display: flex;
     justify-content: center;
     gap: 20px;
-    margin: 30px 0;
+    margin: 20px 0;
 }
 
 .photo-box {
     width: 200px;
     height: 150px;
-    background: #ccc;
-    border: 1px dashed #666;
+    border: 1px solid #97d5ff;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -99,6 +108,10 @@ footer {
       color: white;
       text-align: center;
       padding: 20px;
+      margin-left: 10px;
+      margin-right: 10px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
       font-size: 1.5rem;
       font-weight: bold;
       letter-spacing: 1px;

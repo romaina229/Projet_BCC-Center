@@ -5,6 +5,7 @@ USE bcc_center;
 
 CREATE TABLE users (
   id INT AUTO_INCREMENT PRIMARY KEY,
+  user_id INT NOT NULL,
   nom_prenom VARCHAR(120) NOT NULL,
   fullname VARCHAR(255) NOT NULL,
   username VARCHAR(100) UNIQUE NOT NULL,
@@ -25,6 +26,7 @@ CREATE TABLE users (
 
 CREATE TABLE IF NOT EXISTS formation (
   id INT AUTO_INCREMENT PRIMARY KEY,
+  user_id INT NOT NULL,
   title VARCHAR(255) NOT NULL,
   description TEXT NULL,
   path VARCHAR(255) NOT NULL,
@@ -106,8 +108,8 @@ CREATE TABLE IF NOT EXISTS forum_threads (
 
 CREATE TABLE IF NOT EXISTS forum_posts (
   id INT AUTO_INCREMENT PRIMARY KEY,
-  thread_id INT NOT NULL,
   user_id INT NOT NULL,
+  thread_id INT NOT NULL,
   body TEXT NOT NULL,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   FOREIGN KEY (thread_id) REFERENCES forum_threads(id) ON DELETE CASCADE,
@@ -116,6 +118,7 @@ CREATE TABLE IF NOT EXISTS forum_posts (
 
 CREATE TABLE IF NOT EXISTS quizzes (
   id INT AUTO_INCREMENT PRIMARY KEY,
+  user_id INT NOT NULL,
   title VARCHAR(255) NOT NULL,
   questions_json JSON NOT NULL,
   created_by INT NOT NULL,
@@ -132,5 +135,16 @@ CREATE TABLE IF NOT EXISTS quiz_attempts (
   FOREIGN KEY (quiz_id) REFERENCES quizzes(id) ON DELETE CASCADE,
   FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 ) ENGINE=InnoDB;
+
+-- Création de l'admin par défaut
+INSERT INTO users (email, username, password, role, nom_prenom) 
+VALUES (
+  'nounonvenanromain@gmail.com',
+  'bcc-center',
+  -- Mot de passe hashé : Admain@bcc2025
+  '$2y$10$ddQdTXyN1GdX7XO6fu0.5u0P0DFb0KGlXMHq4H8dDhcyW7J0z2weq',
+  'admin',
+  'Administrateur BCC-Center'
+);
 
 

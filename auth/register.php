@@ -2,11 +2,8 @@
 <h2 class="text-xl font-bold mb-4">Inscription</h2>
 <form method="post" action="register_action.php" class="space-y-4" onsubmit="return checkPasswords();">
     <input type="text" name="nom_prenom" placeholder="Nom et prénoms complet" required class="border p-2 w-full">
-
     <input type="text" name="username" placeholder="Nom d'utilisateur" required class="border p-2 w-full">
-
-    <input type="email" name="email" placeholder="Email" required class="border p-2 w-full">
-    
+    <input type="email" name="email" placeholder="Email" required class="border p-2 w-full">    
     <!-- Mot de passe -->
     <input 
       type="password" 
@@ -26,10 +23,17 @@
       placeholder="Confirmer le mot de passe" 
       required 
       class="border p-2 w-full">
-    
     <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">S'inscrire</button>
 </form>
+
 <?php include 'footer.php'; ?>
+
+<script>
+  function checkPasswords() {
+    alert ("Inscription réussie !");
+    return true; // autorise l’envoi du formulaire
+  }
+</script>
 
 <script>
 function checkPasswords() {

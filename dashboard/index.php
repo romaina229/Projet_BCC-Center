@@ -15,7 +15,7 @@ $u = current_user();
 <header class="sticky top-0 z-40 bg-white/80 backdrop-blur border-b">
   <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
     <a href="/index.php" class="flex items-center gap-2 font-semibold">
-      <span class="inline-block w-8 h-8 rounded-2xl bg-indigo-600"></span>
+      <span class="inline-block w-20 h-20 b-2-s"><img src="/assets/images/logo bcc.png" alt="Logo BCC-Center" class="logo"></span>
       <span>BCC-Center</span>
     </a>
     <nav x-data="{open:false}" class="relative">
@@ -49,14 +49,14 @@ $u = current_user();
   </a>
   <a href="/formateur/index.php" class="p-6 border rounded-2xl bg-white shadow hover:shadow-md">
     <div class="font-semibold">Espace formateur</div>
-    <div class="text-sm text-gray-600">Ajouter formation, Ajouter consigne, Ajouter QCM, évaluations, notes, badges</div>
+    <div class="text-sm text-gray-600">Ajouter formation, Ajouter consigne, Ajouter QCM, évaluations des exercices, notes, badges</div>
   </a>
   <a href="/admin/index.php" class="p-6 border rounded-2xl bg-white shadow hover:shadow-md">
     <div class="font-semibold">Administration</div>
-    <div class="text-sm text-gray-600">Utilisateurs, formations, suivi global</div>
+    <div class="text-sm text-gray-600">gestion des utilisateurs, programmation des formations, suivi global et tout autre tâches utiles pour la plateforme</div>
   </a>
 </div>
-<p class="mt-6 text-sm">Connecté en tant que: <strong><?php echo htmlspecialchars($u['name']); ?></strong> (<?php echo htmlspecialchars($u['role']); ?>) — <a class="text-indigo-600" href="/auth/logout.php">Se déconnecter</a></p>
+<p class="mt-6 text-sm">Connecté en tant que: <strong><?php echo htmlspecialchars($u['name']); ?></strong> (<?php echo htmlspecialchars($u['role']); ?>)  —  <a class="text-indigo-600" href="/auth/logout.php">Se déconnecter</a></p>
 </main>
 <footer class="border-t mt-12">
   <div class="max-w-7xl mx-auto px-4 py-6 text-sm text-gray-600 flex flex-wrap gap-4 justify-between">

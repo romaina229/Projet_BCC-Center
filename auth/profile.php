@@ -2,7 +2,7 @@
 require_once "../config.php";
 require_login();
 
-$user = current_user();
+$users = current_users();
 ?>
 <!doctype html>
 <html lang="fr">
@@ -18,9 +18,11 @@ $user = current_user();
     <h1 class="text-2xl font-bold mb-4">Mon profil</h1>
 
     <div class="bg-white p-6 rounded-2xl shadow border">
-      <p><strong>Nom complet :</strong> <?= htmlspecialchars($user['full_name']) ?></p>
-      <p><strong>Email :</strong> <?= htmlspecialchars($user['email']) ?></p>
-      <p><strong>Rôle :</strong> <?= htmlspecialchars($user['role']) ?></p>
+      <p><strong>Photo de profil :</strong> <img src="<?= htmlspecialchars($users['photo']) ?>" alt="Photo de profil" class="w-16 h-16 rounded-full object-cover border"></p>
+      <p><strong>Nom complet :</strong> <?= htmlspecialchars($users['nom_prenom']) ?></p>
+      <p><strong>Bio :</strong> <?= htmlspecialchars($users['bio']) ?></p>
+      <p><strong>Email :</strong> <?= htmlspecialchars($users['email']) ?></p>
+      <p><strong>Rôle :</strong> <?= htmlspecialchars($users['role']) ?></p>
     </div>
   </main>
 

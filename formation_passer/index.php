@@ -11,7 +11,7 @@
     <!-- HEADER avec logo rond et titre -->
     <header>
         <div class="header-container">
-            <img src="../assets/images/logo bcc.png" alt="Logo BCC-Center" class="logo">
+            <img src="/assets/images/logo bcc.png" alt="Logo BCC-Center" class="logo">
             <h1>BOOSTAGE DES COMPETENCES ET CAPACITES</h1>
         </div>
         
@@ -47,10 +47,12 @@
 </body2>
 
     <!-- SECTION INTRODUCTION -->
-    <section class="intro"><p class="slogan">Une structure de renforcement des capacités et compétences des acteurs de projets/programmes innovants</p>
+    <section class="intro">
+      <p class="slogan1">BIENVENUS SUR NOTRE PLATEFORME</p>
+      <p class="slogan">Nous sommes une structure de renforcement des capacités et compétences des acteurs de projets/programmes innovants</p>
         <div class="intro-text">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae purus nec nulla aliquet commodo.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis sapien in arcu suscipit tincidunt.</p>
+            <p>Dans le cadre de notre mission, nous nous engageons à renforcer les capacités et à développer les compétences des acteurs œuvrant dans la planification, la mise en œuvre et l’évaluation des projets et programmes. Notre approche met un accent particulier sur la sensibilité au genre, la promotion de l’inclusion sociale et la sauvegarde environnementale, afin de favoriser des initiatives durables et équitables.</p>
+            <p>Pour bénéficier de nos sessions de formation, d’échanges d’expériences et d’outils pédagogiques, nous vous invitons à créer un compte sur notre plateforme dédiée. Ce pendant vous pouvez explorer nos ressources et vous impliquer dans nos activités.</p>
         </div>
     </section>
   <section class="body2">

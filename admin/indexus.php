@@ -1,6 +1,6 @@
 <?php
-require_once "../config.php";
-$threads = $pdo->query("SELECT f.id, f.title, u.name as author FROM forum_threads f JOIN users u ON u.id=f.user_id ORDER BY f.id DESC")->fetchAll();
+require_once "../config.php"; require_login(); require_role('admin');
+$users = $pdo->query("SELECT id, name, email, role FROM users ORDER BY id DESC")->fetchAll();
 ?>
 <!doctype html>
 <html lang="fr">
@@ -14,7 +14,7 @@ $threads = $pdo->query("SELECT f.id, f.title, u.name as author FROM forum_thread
 <header class="sticky top-0 z-40 bg-white/80 backdrop-blur border-b">
   <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
     <a href="/index.php" class="flex items-center gap-2 font-semibold">
-      <span class="inline-block w-8 h-8 rounded-2xl bg-indigo-600"><img src="/assets/images/logo bcc.png" alt="Logo BCC-Center" class="logo"></span>
+      <span class="inline-block w-20 h-20 b-2-s"><img src="./assets/images/logo bcc.png" alt="Logo BCC-Center" class="logo"></span>
       <span>BCC-Center</span>
     </a>
     <nav x-data="{open:false}" class="relative">
@@ -23,14 +23,22 @@ $threads = $pdo->query("SELECT f.id, f.title, u.name as author FROM forum_thread
       </button>
       <ul class="hidden md:flex gap-6 items-center">
         <li><a class="hover:text-indigo-600" href="/index.php">Accueil</a></li>
+        <?php if (current_user()['role'] === 'admin'): ?>
+            <li><a class="hover:text-indigo-600" href="./auth/user.php">Utilisateurs</a></li>
+          <?php endif; ?>
         <li><a class="hover:text-indigo-600" href="/formations.php">Formations</a></li>
+        <li><a class="hover:text-indigo-600" href="/formation_passer/index.php">Espace programme</a></li>
         <li><a class="hover:text-indigo-600" href="/forum/index.php">Forum</a></li>
         <li><a class="hover:text-indigo-600" href="/auth/login.php">Connexion</a></li>
         <li><a class="hover:text-indigo-600" href="/auth/register.php">Créer un compte</a></li>
       </ul>
       <ul x-show="open" @click.away="open=false" class="md:hidden absolute right-0 mt-2 bg-white shadow rounded-xl p-3 space-y-2 w-56">
         <li><a class="block px-2 py-1 rounded hover:bg-gray-100" href="/index.php">Accueil</a></li>
+        <?php if (current_user()['role'] === 'admin'): ?>
+            <li><a class="hover:text-indigo-600" href="./auth/user.php">Utilisateurs</a></li>
+          <?php endif; ?>
         <li><a class="block px-2 py-1 rounded hover:bg-gray-100" href="/formations.php">Formations</a></li>
+        <li><a class="hover:text-indigo-600" href="/formation_passer/index.php">Espace programme</a></li>
         <li><a class="block px-2 py-1 rounded hover:bg-gray-100" href="/forum/index.php">Forum</a></li>
         <li><a class="block px-2 py-1 rounded hover:bg-gray-100" href="/auth/login.php">Connexion</a></li>
         <li><a class="block px-2 py-1 rounded hover:bg-gray-100" href="/auth/register.php">Créer un compte</a></li>
@@ -40,16 +48,22 @@ $threads = $pdo->query("SELECT f.id, f.title, u.name as author FROM forum_thread
 </header>
 <main class="max-w-7xl mx-auto px-4 py-8">
 
-<h1 class="text-2xl font-bold mb-4">Forum</h1>
-<a class="inline-block mb-4 px-4 py-2 rounded-xl bg-indigo-600 text-white" href="/forum/new.php">Nouveau sujet</a>
-<div class="bg-white rounded-2xl border shadow">
-  <?php foreach($threads as $t): ?>
-    <a href="/forum/thread.php?id=<?php echo intval($t['id']); ?>" class="block p-4 border-b hover:bg-gray-50">
-      <div class="font-semibold"><?php echo htmlspecialchars($t['title']); ?></div>
-      <div class="text-sm text-gray-600">par <?php echo htmlspecialchars($t['author']); ?></div>
-    </a>
-  <?php endforeach; ?>
-</div>
+<h1 class="text-2xl font-bold mb-4">Administration</h1>
+<section class="bg-white rounded-2xl border shadow p-6">
+  <h2 class="font-semibold mb-3">Utilisateurs</h2>
+  <table class="w-full text-sm">
+    <thead><tr><th class="p-2 text-left">Nom</th><th class="p-2 text-left">Email</th><th class="p-2 text-left">Rôle</th></tr></thead>
+    <tbody>
+      <?php foreach($users as $u): ?>
+      <tr class="border-t">
+        <td class="p-2"><?php echo htmlspecialchars($u['name']); ?></td>
+        <td class="p-2"><?php echo htmlspecialchars($u['email']); ?></td>
+        <td class="p-2"><?php echo htmlspecialchars($u['role']); ?></td>
+      </tr>
+      <?php endforeach; ?>
+    </tbody>
+  </table>
+</section>
 </main>
 <footer class="border-t mt-12">
   <div class="max-w-7xl mx-auto px-4 py-6 text-sm text-gray-600 flex flex-wrap gap-4 justify-between">

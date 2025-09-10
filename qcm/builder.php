@@ -18,7 +18,7 @@ if(!in_array(current_user()['role'], ['formateur','admin'])){
 <header class="sticky top-0 z-40 bg-white/80 backdrop-blur border-b">
   <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
     <a href="/index.php" class="flex items-center gap-2 font-semibold">
-      <span class="inline-block w-8 h-8 rounded-2xl bg-indigo-600"></span>
+      <span class="inline-block w-8 h-8 rounded-2xl bg-indigo-600"><img src="/assets/images/logo bcc.png" alt="Logo BCC-Center" class="logo"></span>
       <span>BCC-Center</span>
     </a>
     <nav x-data="{open:false}" class="relative">
@@ -52,10 +52,7 @@ if(!in_array(current_user()['role'], ['formateur','admin'])){
   
   <button type="submit" class="px-4 py-2 bg-indigo-600 text-white rounded-xl">Enregistrer</button>
 </form>
-
-<p class="text-sm mt-4 text-gray-600">Astuce: utilisez le format JSON fourni dans le README pour générer rapidement un QCM.</p>
 </main>
-
 <footer class="border-t mt-12">
   <div class="max-w-7xl mx-auto px-4 py-6 text-sm text-gray-600 flex flex-wrap gap-4 justify-between">
     <span>© 2025 BCC-Center</span>

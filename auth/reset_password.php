@@ -3,7 +3,7 @@ $token = $_GET['token'] ?? '';
 $stmt = $pdo->prepare("SELECT * FROM users WHERE reset_token = ?");
 $stmt->execute([$token]);
 $user = $stmt->fetch();
-if (!$user) { echo "Lien invalide."; include 'footer.php'; exit; }
+if (!$user) { echo "Lien invalide."; exit; }
 ?>
 <h2 class="text-xl font-bold mb-4">Réinitialiser le mot de passe</h2>
 <form method="post" action="reset_password_action.php" class="space-y-4">
