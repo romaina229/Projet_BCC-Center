@@ -1,0 +1,222 @@
+ <!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Programme de Formation - BCC Center</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+<script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f7f9fc;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background: #004080;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      font-size: 1.5rem;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #004080;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0 auto;
+      overflow: hidden;
+      border-radius: 10px;
+    }
+
+    thead {
+      background: #004080;
+      color: white;
+    }
+
+    th, td {
+      padding: 14px;
+      text-align: center;
+      border-bottom: 1px solid #ddd;
+    }
+
+    tr:nth-child(even) {
+      background: #f2f6fc;
+    }
+
+    tr:hover {
+      background: #e6f0ff;
+    }
+
+    .status {
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: bold;
+    }
+
+    .ongoing {
+      background: #ffcc00;
+      color: #333;
+    }
+
+    .completed {
+      background: #4CAF50;
+      color: white;
+    }
+
+    .upcoming {
+      background: #007bff;
+      color: white;
+    }
+
+    @media (max-width: 768px) {
+      table, thead, tbody, th, td, tr {
+        display: block;
+      }
+      thead tr {
+        display: none;
+      }
+      tr {
+        margin-bottom: 20px;
+        background: #f9f9f9;
+        border-radius: 10px;
+        padding: 12px;
+      }
+      td {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+        border: none;
+        border-bottom: 1px solid #ddd;
+      }
+      td:last-child {
+        border-bottom: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    📚 Programme de Formation - BCC Center
+  </header>
+
+  <div class="container">
+    <h2>Formations en cours</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Module</th>
+          <th>Thème</th>
+          <th>Durée</th>
+          <th>Formateur</th>
+          <th>Statut</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Formation pratique sur l'utilisation professionnelle du logiciel MS Project</td>
+          <td>2 jours</td>
+          <td>M. Jons T. AGBOKO</td>
+          <td><a href="/auth/login.php"><span class="status ongoing">En cours</span></a></td>
+        </tr>
+		<tr>
+          <td>2</td>
+          <td>Gestion de projet orientée résultats (GAR)</td>
+          <td>3 jours</td>
+          <td>Equipe BCC-Center</td>
+          <td><span class="status upcoming">À venir</span></td>
+        </tr>		
+        <tr>
+          <td>3</td>
+          <td>Rédaction de plans d'affaires</td>
+          <td>3 jours</td>
+          <td>Equipe BCC-Center</td>
+          <td><span class="status upcoming">À venir</span></td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>Gestion de projets sensibles au genre et à l’inclusion sociale</td>
+          <td>2 jours</td>
+          <td>Expert invité</td>
+          <td><span class="status upcoming">À venir</span></td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>Gestion financière et mobilisation des ressources</td>
+          <td>1 jour</td>
+          <td>Equipe BCC-Center</td>
+          <td><span class="status upcoming">À venir</span></td>
+        </tr>
+		<tr>
+          <td>6</td>
+          <td>Leadership et innovation en gestion de programme</td>
+          <td>3 jours</td>
+          <td>Equipe BCC-Center</td>
+          <td><span class="status upcoming">À venir</span></td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td>Gestion de projets sensibles au genre et à l’inclusion sociale</td>
+          <td>2 jours</td>
+          <td>Expert invité</td>
+          <td><span class="status upcoming">À venir</span></td>
+        </tr>
+        <tr>
+          <td>8</td>
+          <td>Suivi-évaluation et impact social</td>
+          <td>1 jour</td>
+          <td>Equipe BCC-Center</td>
+          <td><span class="status upcoming">À venir</span></td>
+        </tr>
+		<tr>
+          <td>9</td>
+          <td>Conception et Gestion des projets : Vague 1 et 2</td>
+          <td>1 jour</td>
+          <td>Equipe BCC-Center</td>
+          <td><span class="status completed">Terminé</span></td>
+        </tr>
+		<tr>
+          <td>10</td>
+          <td>Maîtrise des outils numériques de collecte de données</td>
+          <td>1 jour</td>
+          <td>Equipe BCC-Center</td>
+          <td><span class="status completed">Terminé</span></td>
+        </tr>
+		
+      </tbody>
+    </table>
+  </div>
+
+<footer class="border-t mt-12">
+  <div class="max-w-7xl mx-auto px-4 py-6 text-sm text-gray-600 flex flex-wrap gap-4 justify-between">
+    <span>© 2025 BCC-Center</span>
+    <div class="space-x-4">
+      <a href="/about.php" class="hover:text-indigo-600">À propos</a>
+      <a href="/contact.php" class="hover:text-indigo-600">Contact</a>
+      <a href="/legal.php" class="hover:text-indigo-600">Mentions légales</a>
+    </div>
+  </div>
+</footer>
+</body>
+</html

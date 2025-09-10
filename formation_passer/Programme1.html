@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Programme de Formation - BCC Center</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f7f9fc;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background: #004080;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      font-size: 1.5rem;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #004080;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0 auto;
+      overflow: hidden;
+      border-radius: 10px;
+    }
+
+    thead {
+      background: #004080;
+      color: white;
+    }
+
+    th, td {
+      padding: 14px;
+      text-align: center;
+      border-bottom: 1px solid #ddd;
+    }
+
+    tr:nth-child(even) {
+      background: #f2f6fc;
+    }
+
+    tr:hover {
+      background: #e6f0ff;
+    }
+
+    .status {
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: bold;
+    }
+
+    .ongoing {
+      background: #ffcc00;
+      color: #333;
+    }
+
+    .completed {
+      background: #4CAF50;
+      color: white;
+    }
+
+    .upcoming {
+      background: #007bff;
+      color: white;
+    }
+
+    @media (max-width: 768px) {
+      table, thead, tbody, th, td, tr {
+        display: block;
+      }
+      thead tr {
+        display: none;
+      }
+      tr {
+        margin-bottom: 20px;
+        background: #f9f9f9;
+        border-radius: 10px;
+        padding: 12px;
+      }
+      td {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+        border: none;
+        border-bottom: 1px solid #ddd;
+      }
+      td:last-child {
+        border-bottom: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    📚 Programme de Formation - BCC Center
+  </header>
+
+  <div class="container">
+    <h2>Formations en cours</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Module</th>
+          <th>Thème</th>
+          <th>Durée</th>
+          <th>Formateur</th>
+          <th>Statut</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td><strong style="color:#004080;">Leadership entrepreneurial</strong></td>
+          <td><strong style="color:#e67e22;">2 jours</strong></td>
+          <td><strong style="color:#16a085;">M. Romain AKPO</strong></td>
+          <td><span class="status ongoing">En cours</span></td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td><strong style="color:#004080;">Rédaction de plans d'affaires</strong></td>
+          <td><strong style="color:#e67e22;">3 jours</strong></td>
+          <td><strong style="color:#16a085;">Équipe BCC-Center</strong></td>
+          <td><span class="status upcoming">À venir</span></td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td><strong style="color:#004080;">Techniques commerciales modernes</strong></td>
+          <td><strong style="color:#e67e22;">2 jours</strong></td>
+          <td><strong style="color:#16a085;">Expert invité</strong></td>
+          <td><span class="status upcoming">À venir</span></td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td><strong style="color:#004080;">Crowdfunding & Réseautage</strong></td>
+          <td><strong style="color:#e67e22;">1 jour</strong></td>
+          <td><strong style="color:#16a085;">Équipe BCC-Center</strong></td>
+          <td><span class="status completed">Terminé</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</body>
+</html>

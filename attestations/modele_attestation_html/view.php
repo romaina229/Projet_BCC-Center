@@ -1,0 +1,129 @@
+<?php
+require_once "../config.php"; require_login(); 
+$u = current_user();
+header("Content-Type: text/html; charset=utf-8");
+$html = file_get_contents("modele_attestation.html");
+
+$html = str_replace("{{NAME}}", $user['nom']." ".$user['prenom'], $html);
+$html = str_replace("{{formation}}", "Boostage des Compétences ...", $html);
+$html = str_replace("{{date}}", date("d/m/Y"), $html);
+?>
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Attestation - BCC-Center</title>
+<style>
+    body {
+        font-family: "Times New Roman", serif;
+        text-align: center;
+        padding: 40px;
+        border: 15px solid #c0c0c0; /* Bordure grise autour */
+        background-color: #fff;
+    }
+    .header {
+        font-size: 16px;
+        font-weight: bold;
+    }
+    .subheader {
+        font-size: 14px;
+        margin-bottom: 20px;
+    }
+    .logo-right {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        width: 120px;
+    }
+    .title {
+        font-size: 36px;
+        font-weight: bold;
+        margin-top: 20px;
+        text-transform: uppercase;
+    }
+    .subtitle {
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+    .content {
+        font-size: 18px;
+        margin: 30px 0;
+    }
+    .highlight {
+        font-weight: bold;
+        color: #1a5fb4;
+    }
+    .footer {
+        margin-top: 40px;
+        font-size: 16px;
+    }
+    .signatures {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 50px;
+    }
+    .signature {
+        text-align: center;
+        font-size: 12px;
+        width: 30%;
+    }
+    .signature img {
+        width: 120px;
+        height: auto;
+        margin-bottom: 5px;
+    }
+    .qr {
+        margin: 20px auto;
+    }
+</style>
+</head>
+<body>
+</div>
+    <!-- Logo haut droit -->
+    <img src="images/logo_bcc.png" alt="Logo BCC" class="logo-right">
+
+    <div class="header">
+        CENTRE DE BOOSTAGE DES COMPÉTENCES ET CAPACITÉS <br>
+        (BCC-Center)
+    </div>
+
+    <div class="title">ATTESTATION</div>
+    <div class="subtitle">DE SUCCÈS</div>
+
+    <div class="content">
+        <p>NOUS ATTESTONS QUE</p>
+        <h2>{{NAME}}</h2>
+
+        <p>
+            A suivi avec succès notre formation pratique sur :<br>
+            <span class="highlight">{{formation}}</span>
+        </p>
+    </div>
+
+    <!-- QR Code -->
+    <div class="qr">
+        <img src="images/qrcode.png" alt="QR Code" width="100">
+        <p style="font-size:12px;">Scannez le code QR pour visualiser les modules</p>
+    </div>
+
+    <div class="footer">
+        Fait à Abomey-Calavi, le {{date}}
+    </div>
+
+    <!-- Signatures -->
+    <div class="signatures">
+        <div class="signature">
+            <img src="images/cachet1.png" alt="Cachet Claude">
+            <p><b>Claude ALLOFA</b><br><i>Secrétaire Général</i></p>
+        </div>
+        <div class="signature">
+            <img src="images/cachet2.png" alt="Cachet Marie-Josée">
+            <p><b>Marie-Josée G. ASSOGBA</b><br><i>Présidente E-Vie ONG</i></p>
+        </div>
+        <div class="signature">
+            <img src="images/cachet3.png" alt="Cachet Jonas">
+            <p><b>Jonas T. AGBOBO</b><br><i>Responsable du BCC-Center</i></p>
+        </div>
+    </div>
+</body>
+</html>

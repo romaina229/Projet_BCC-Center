@@ -1,0 +1,62 @@
+[
+  {
+    "question": "Quels sont les outils techniques indispensables pour la rédaction d’un projet ?",
+    "options": ["La méthodologie", "TDR", "La cible", "Les objectifs"],
+    "answer": 1,
+    "explanation": "Les Termes de Référence (TDR) sont essentiels car ils définissent le cadre, les objectifs et les responsabilités."
+  },
+  {
+    "question": "Quel rôle jouent les objectifs spécifiques dans un projet ?",
+    "options": ["Contribuer à l'atteinte de l'objectif général", "Pour quantifier", "Pour adapter le projet aux cibles", "Pour faire une analyse approfondie", "Pour éviter les dépenses inutiles"],
+    "answer": 0,
+    "explanation": "Les objectifs spécifiques permettent de détailler et de préciser les actions pour atteindre l’objectif général."
+  },
+  {
+    "question": "Qu'appelle-t-on un objectif SMART ?",
+    "options": ["Spécifique, Mesurable, Atteignable, Réaliste, Temporel", "Objectivement atteignable dans le temps", "Objectifs mathématiques", "Aucune réponse juste"],
+    "answer": 0,
+    "explanation": "Un objectif SMART doit être Spécifique, Mesurable, Atteignable, Réaliste et défini dans le Temps."
+  },
+  {
+    "question": "Quelle est la première étape d’un cycle de projet ?",
+    "options": ["La planification", "L’identification", "L’évaluation", "La mise en œuvre"],
+    "answer": 1,
+    "explanation": "Le cycle de projet commence par l’identification des besoins et des problèmes."
+  },
+  {
+    "question": "Quel document permet de présenter de manière synthétique un projet ?",
+    "options": ["Le budget", "Le plan de travail", "La note conceptuelle", "Le rapport final"],
+    "answer": 2,
+    "explanation": "La note conceptuelle résume les éléments essentiels du projet avant son élaboration détaillée."
+  },
+  {
+    "question": "Que signifie le terme 'parties prenantes' ?",
+    "options": ["Les bénéficiaires directs uniquement", "Les personnes ou organisations affectées ou impliquées dans le projet", "Les bailleurs uniquement", "Les ONG locales"],
+    "answer": 1,
+    "explanation": "Les parties prenantes sont toutes les personnes ou organisations concernées par le projet, directement ou indirectement."
+  },
+  {
+    "question": "Quel est l’objectif principal d’un plan de suivi-évaluation ?",
+    "options": ["Contrôler les dépenses uniquement", "Mesurer la progression et l’impact du projet", "Former les bénéficiaires", "Produire des rapports annuels"],
+    "answer": 1,
+    "explanation": "Le suivi-évaluation sert à mesurer la progression et l’impact du projet pour ajuster si nécessaire."
+  },
+  {
+    "question": "Quelle est la différence entre un objectif général et un objectif spécifique ?",
+    "options": ["L’objectif général est plus large et global, les objectifs spécifiques sont plus détaillés et mesurables", "Ils sont identiques", "L’objectif spécifique est toujours financier", "L’objectif général est toujours temporel"],
+    "answer": 0,
+    "explanation": "L’objectif général définit le but global, tandis que les objectifs spécifiques détaillent les étapes pour l’atteindre."
+  },
+  {
+    "question": "Quel outil est souvent utilisé pour planifier les activités d’un projet ?",
+    "options": ["Le diagramme de Gantt", "Le TDR", "La note conceptuelle", "Le budget"],
+    "answer": 0,
+    "explanation": "Le diagramme de Gantt permet de visualiser le calendrier des activités et leur enchaînement."
+  },
+  {
+    "question": "Quelle est l’importance de l’évaluation finale d’un projet ?",
+    "options": ["Elle permet de sanctionner l’équipe", "Elle permet de tirer les leçons et d’améliorer les futurs projets", "Elle sert uniquement à satisfaire le bailleur", "Elle n’a pas beaucoup d’importance"],
+    "answer": 1,
+    "explanation": "L’évaluation finale aide à capitaliser les bonnes pratiques et à améliorer la gestion des futurs projets."
+  }
+]
