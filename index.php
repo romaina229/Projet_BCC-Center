@@ -20,18 +20,18 @@
       <ul class="hidden md:flex gap-6 items-center">
         <li><a class="hover:text-indigo-600" href="/index.php">Accueil</a></li>
         <li><a class="hover:text-indigo-600" href="/formations.php">Formations</a></li>
-        <li><a class="hover:text-indigo-600" href="/formation_passer/index.php">Espace programme</a></li>
-        <li><a class="hover:text-indigo-600" href="/forum/index.php">Forum</a></li>
-        <li><a class="hover:text-indigo-600" href="/auth/login.php">Connexion</a></li>
-        <li><a class="hover:text-indigo-600" href="/auth/register.php">Créer un compte</a></li>
+        <li><a class="hover:text-indigo-600" href="./formation_passer/index.php">Espace programme</a></li>
+        <li><a class="hover:text-indigo-600" href="./forum/index.php">Forum</a></li>
+        <li><a class="hover:text-indigo-600" href="./auth/login.php">Connexion</a></li>
+        <li><a class="hover:text-indigo-600" href="./auth/register.php">Créer un compte</a></li>
       </ul>
       <ul x-show="open" @click.away="open=false" class="md:hidden absolute right-0 mt-2 bg-white shadow rounded-xl p-3 space-y-2 w-56">
         <li><a class="block px-2 py-1 rounded hover:bg-gray-100" href="/index.php">Accueil</a></li>
         <li><a class="block px-2 py-1 rounded hover:bg-gray-100" href="/formations.php">Formations</a></li>
-        <li><a class="hover:text-indigo-600" href="/formation_passer/index.php">Espace programme</a></li>
-        <li><a class="block px-2 py-1 rounded hover:bg-gray-100" href="/forum/index.php">Forum</a></li>
-        <li><a class="block px-2 py-1 rounded hover:bg-gray-100" href="/auth/login.php">Connexion</a></li>
-        <li><a class="block px-2 py-1 rounded hover:bg-gray-100" href="/auth/register.php">Créer un compte</a></li>
+        <li><a class="block px-2 py-1 rounded hover:bg-gray-100" href="./formation_passer/index.php">Espace programme</a></li>
+        <li><a class="block px-2 py-1 rounded hover:bg-gray-100" href="./forum/index.php">Forum</a></li>
+        <li><a class="block px-2 py-1 rounded hover:bg-gray-100" href="./auth/login.php">Connexion</a></li>
+        <li><a class="block px-2 py-1 rounded hover:bg-gray-100" href="./auth/register.php">Créer un compte</a></li>
       </ul>
     </nav>
   </div>
@@ -40,12 +40,12 @@
 
 <section class="grid md:grid-cols-2 gap-8 items-center">
   <div class="space-y-6">
-    <h1 class="text-4xl md:text-5xl font-extrabold leading-tight">Plateforme de formation <span class="text-indigo-600">BCC-Center</span></h1>
+    <h1 class="text-4xl md:text-5xl font-extrabold leading-tight">Bienvenue ! <br> Renforcez vos capacités et faites briller vos initiatives innovantes.<span class="text-indigo-600"> <br>BCC-Center</span></h1>
     <p class="text-lg text-gray-700">Nous œuvrons pour le renforcement des capacités et le développement des compétences des acteurs engagés dans la planification, la mise en œuvre et le suivi des projets et programmes sensibles au genre, favorisant l’inclusion sociale et garantissant la sauvegarde environnementale.
 	<br> Afin de participer à nos sessions de formation et bénéficier de nos ressources pédagogiques, nous vous invitons à créer un compte sur notre plateforme dédiée.</p>
     <div class="flex gap-3">
-      <a href="/auth/register.php" class="px-5 py-3 rounded-2xl bg-indigo-600 text-white hover:bg-indigo-700">Créer un compte</a>
-      <a href="/auth/login.php" class="px-5 py-3 rounded-2xl border hover:bg-gray-100">Se connecter</a>
+      <a href="./auth/register.php" class="px-5 py-3 rounded-2xl bg-indigo-600 text-white hover:bg-indigo-700">Créer un compte</a>
+      <a href="./auth/login.php" class="px-5 py-3 rounded-2xl border hover:bg-gray-100">Se connecter</a>
     </div>
   </div>
   <div class="bg-white border rounded-2xl p-6 shadow">
@@ -72,17 +72,17 @@
 </section>
 <section class="mt-12 grid md:grid-cols-3 gap-6">
   <div class="p-6 bg-white rounded-2xl border shadow">
-  <img src="../assets/images/témoignage.png" alt="Logo BCC-Center" class="logo"><br>
+  <img src="./assets/images/image6.jpg" alt="Logo BCC-Center" class="logo"><br>
     <h3 class="font-semibold text-lg">Espace participant</h3>
     <p class="text-gray-700">Déposer des exercices, passer les QCM, consulter les notes et badges.</p>
   </div>
   <div class="p-6 bg-white rounded-2xl border shadow">
-  <img src="../assets/images/formateur.jpg" alt="Logo BCC-Center" class="logo"><br>
+  <img src="./assets/images/formateur.jpg" alt="Logo BCC-Center" class="logo"><br>
     <h3 class="font-semibold text-lg">Espace formateur</h3>
     <p class="text-gray-700">Créer des consignes, évaluer, attribuer notes et badges.</p>
   </div>
   <div class="p-6 bg-white rounded-2xl border shadow">
-  <img src="../assets/images/participant.jpg" alt="Logo BCC-Center" class="logo"><br>
+  <img src="./assets/images/participant.jpg" alt="Logo BCC-Center" class="logo"><br>
     <h3 class="font-semibold text-lg">Administration</h3>
     <p class="text-gray-700">Gestion des utilisateurs, formations, suivi global.</p>
   </div>
@@ -90,7 +90,7 @@
 </main>
 <footer class="border-t mt-12">
   <div class="max-w-7xl mx-auto px-4 py-6 text-sm text-gray-600 flex flex-wrap gap-4 justify-between">
-    <span>© 2025 BCC-Center - Tous droits réservés</span>
+    <span>Adresse : Abomey-Calavi, Bénin<br>Téléphone : +229 01 40 15 24 43<br>Contact : <a href="mailto:boostagecenter@gmail.com" class="hover:text-indigo-600"> courrier électronique</a><br>© 2025 BCC-Center - Tous droits réservés</span>
     <div class="space-x-4">
       <a href="/about.php" class="hover:text-indigo-600">À propos</a>
       <a href="/contact.php" class="hover:text-indigo-600">Contact</a>

@@ -1,5 +1,5 @@
 <?php
-require 'config.php';
+require __DIR__ . '/../config.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];

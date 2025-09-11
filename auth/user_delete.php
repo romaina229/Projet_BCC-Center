@@ -1,5 +1,5 @@
 <?php
-require_once "../config.php"; 
+require __DIR__ . '/../config.php'; 
 require_login();
 
 if (!in_array(current_user()['role'], ['admin'])) {

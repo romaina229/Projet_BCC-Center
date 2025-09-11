@@ -10,9 +10,10 @@ body {
 
 /* === Header === */
 header {
-    background: #0c1824;
+    background:  #012244ec;
     color: white;
     padding: 5px;
+    padding-top: 5px;
     text-align: center;
 }
 .header-container {
@@ -20,8 +21,8 @@ header {
     justify-content:around;
     align-items: center;
     gap: 60px;
-	text-align : center;
-	font-size : 35px;
+	  text-align : center;
+	  font-size : 35px;
 }
 
 .logo {
@@ -36,26 +37,25 @@ header {
     font-style: italic, bold;
     /*margin-top: 15px;*/
 	text-align : center;
-	padding-bottom : 30px;
+	padding-bottom : 20px;
 	padding-top : 0 0 5px;
-	font-size : 24px;
-	color :rgb(218, 245, 68);
+	font-size : 40px;
+	color :rgb(252, 25, 17);
 }
 
 .slogan {
     font-style: italic;
-    /*margin-top: 15px;*/
-	text-align : justify;
-	padding-bottom : 30px;
-	padding-top : 0 0 5px;
-	font-size : 18px;
-	color :rgb(12, 11, 11);
+    margin-top: 10px;
+    text-align : center;
+    padding-bottom : 20px;
+    padding-top : 0 0 5px;
+    font-size : 35px;
 }
 
 /* === Section introduction === */
 .intro {
     padding: 40px 20px;
-    background: white;
+    background: rgb(255, 255, 255);
 }
 .intro-text {
     display: flex;
@@ -64,36 +64,106 @@ header {
 }
 .intro-text p {
     flex: 1;
-    background: #eef3fa;
+    background: #fcfcfc;
     padding: 15px;
-    border-radius: 8px;
+    border-radius: 5px;
 }
 
 /* === Section photos === */
-.photos {
+/*.photos {
     display: flex;
     justify-content: center;
     gap: 20px;
     margin: 20px 0;
-}
+}*/
 
-.photo-box {
+/*.photo-box {
     width: 200px;
     height: 150px;
     border: 1px solid #97d5ff;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 10px;
+    border-radius: 3px;
     font-weight: bold;
+}*/
+/*.photo-box img {
+    margin: 20px;
+    border-radius: 5px;
+    object-fit: cover;
+    align-items: center;
+    height: auto;
+    width: auto;
+    border: 1px solid #97d5ff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3px;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+    transform: scale(1);
+}
+
+.photo-box:hover {transform: scale(1.05); /* Effet de zoom au survol *}*/
+
+.photo-container {
+    display: flex;
+    gap: 20px;                 /* espace entre les images */
+    padding: 20px 0;
+    overflow: hidden;          /* pas de scrollbar visible */
+    position: relative;
+    width: 100%;
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
+.photo-track {
+    display: flex;
+    gap: 20px;                 /* espace entre les images */
+    animation: scroll-left 20s linear infinite; /* défilement automatique */
+}
+
+.photo-track img {
+    flex: 0 0 auto;            /* garde la taille réelle */
+    width: auto;
+    height: 200px;             /* ajuste selon ton besoin */
+    border: 1px solid #97d5ff;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.photo-track img:hover {
+    transform: scale(1.05);    /* effet zoom au survol */
+}
+
+@keyframes scroll-left {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); } /* fait défiler la moitié de la piste */
 }
 
 /* === Footer === */
 footer {
-    background: #004080;
+    background: #012244ec;
     color: white;
     text-align: center;
     padding: 15px;
+}
+.right {
+    text-align: right;
+    font-size: 0.9rem;
+    gap: 18px;
+}
+#lefth {
+    text-align: left;
+    font-size: 0.9rem;
+    gap: 18px;
+}
+#center {
+    text-align: center;
+    font-size: 0.9rem;
+    gap: 18px;
 }
 
   body2 {
@@ -104,7 +174,7 @@ footer {
     }
 
     .programme {
-      background: #004080;
+      background: #012244ec;
       color: white;
       text-align: center;
       padding: 20px;
@@ -120,17 +190,17 @@ footer {
     .container {
       max-width: 1000px;
       margin: 40px auto;
-      padding: 20px;
+      padding: 15px;
       background: white;
       border-radius: 12px;
       box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     }
 
-    h2 {
+    /*h2 {
       text-align: center;
       margin-bottom: 20px;
       color: #004080;
-    }
+    }*/
 
     table {
       width: 100%;
@@ -141,7 +211,7 @@ footer {
     }
 
     thead {
-      background: #004080;
+      background: #456a8f;
       color: white;
     }
 
@@ -156,7 +226,7 @@ footer {
     }
 
     tr:hover {
-      background: #e6f0ff;
+      background: #cfe1fc;
     }
 
     .status {
@@ -203,5 +273,10 @@ footer {
       }
       td:last-child {
         border-bottom: none;
+      }
+      h2 {
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-bottom: 10px;
       }
     }

@@ -1,5 +1,5 @@
 <?php
-require_once "../config.php"; require_login();
+require_once __DIR__ . "/../config.php"; require_login();
 $thread_id = intval($_POST['thread_id'] ?? 0);
 $body = trim($_POST['body'] ?? '');
 if (!$thread_id || !$body) { die("Champs manquants"); }

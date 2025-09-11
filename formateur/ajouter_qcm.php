@@ -1,5 +1,5 @@
 <?php
-require "../config.php";
+require __DIR__ . '/../config.php';
 if ($_SESSION['role'] !== 'formateur') die("Accès refusé");
 if (isset($_POST['formation_id'])) {
     $stmt = $pdo->prepare("INSERT INTO qcm (formation_id, titre, seuil_reussite) VALUES (?, ?, ?)");

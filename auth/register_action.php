@@ -1,5 +1,5 @@
 <?php
-require_once "../config.php";
+require __DIR__ . '/../config.php';
 
 $nom_prenom = trim($_POST['nom_prenom'] ?? '');
 $email = trim($_POST['email'] ?? '');
@@ -19,4 +19,4 @@ $stmt->execute([$nom_prenom, $email, $hash, $role]);
 // Auto-login
 $id = $pdo->lastInsertId();
 $_SESSION['user'] = ['id'=>$id,'nom_prenom'=>$nom_prenom,'email'=>$email,'role'=>$role];
-header("Location: /dashboard/index.php");
+header("Location: ../dashboard/index.php");

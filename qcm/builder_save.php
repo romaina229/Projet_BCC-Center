@@ -4,12 +4,12 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-require_once "../config.php"; 
+require_once __DIR__ . "/../config.php"; 
 require_login(); 
 
 // Vérifier le rôle
 if(!in_array(current_user()['role'], ['formateur','admin'])){
-    die('Accès refusé');
+    die('Accès refusé : vous devez être formateur ou administrateur pour créer un QCM.');
 }
 
 // Récupérer le titre et le fichier JSON depuis le formulaire
@@ -18,7 +18,7 @@ $questions_file = trim($_POST['questions_file'] ?? '');
 
 // Vérifier que les champs sont remplis
 if (!$title || !$questions_file) {
-    die('Champs manquants');
+    die('Champs manquants vous devez fournir un titre et un fichier JSON.');
 }
 
 // Vérifier que le fichier JSON existe

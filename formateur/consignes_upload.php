@@ -1,5 +1,5 @@
 <?php
-require_once "../config.php"; require_login(); require_role('formateur');
+require_once __DIR__ . "/../config.php"; require_login(); require_role('formateur');
 if (!isset($_FILES['file'])) { die("Aucun fichier."); }
 $dir = __DIR__ . "/../storage/consignes";
 if (!is_dir($dir)) { mkdir($dir, 0777, true); }

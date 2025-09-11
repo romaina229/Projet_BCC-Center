@@ -1,6 +1,6 @@
 <?php
-$dir = __DIR__ . "/storage/consignes/";   // chemin réel
-$urlPath = "/storage/consignes/";         // chemin public
+$dir = __DIR__ . "/../storage/consignes/";   // chemin réel
+$urlPath = "../storage/consignes/";         // chemin public
 
 echo "<h2>📚 Liste des consignes</h2>";
 echo "<ul>";

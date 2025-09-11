@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/vendor/autoload.php'; // Si tu utilises PHPWord
+require_once __DIR__ . '/./vendor/autoload.php'; // Si tu utilises PHPWord
 
 use PhpOffice\PhpWord\IOFactory;
 use Dompdf\Dompdf;
@@ -22,7 +22,7 @@ use Dompdf\Dompdf;
 
     // Nom du fichier de sortie
     $fichier_sortie = 'attestation_'.$nom_prenom.'.pdf';
-	$chemin_sortie = __DIR__ . "/attestations/certificates/" . $fichier_sortie;
+	$chemin_sortie = __DIR__ . "/./attestations/certificates/" . $fichier_sortie;
 	
     // Génère le fichier
     $template->saveAs($fichier_sortie);

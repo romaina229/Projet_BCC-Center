@@ -10,7 +10,7 @@
 <header class="sticky top-0 z-40 bg-white/80 backdrop-blur border-b">
   <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
     <a href="/index.php" class="flex items-center gap-2 font-semibold">
-      <span class="inline-block w-8 h-8 rounded-2xl bg-indigo-600"></span>
+      <span class="inline-block w-8 h-8"><img src="./assets/images/logo_bcc.png" alt="Logo BCC-Center" class="logo"></span>
       <span>BCC-Center</span>
     </a>
     <nav x-data="{open:false}" class="relative">
@@ -20,16 +20,16 @@
       <ul class="hidden md:flex gap-6 items-center">
         <li><a class="hover:text-indigo-600" href="/index.php">Accueil</a></li>
         <li><a class="hover:text-indigo-600" href="/formations.php">Formations</a></li>
-        <li><a class="hover:text-indigo-600" href="/forum/index.php">Forum</a></li>
-        <li><a class="hover:text-indigo-600" href="/auth/login.php">Connexion</a></li>
-        <li><a class="hover:text-indigo-600" href="/auth/register.php">Créer un compte</a></li>
+        <li><a class="hover:text-indigo-600" href="./forum/index.php">Forum</a></li>
+        <li><a class="hover:text-indigo-600" href="./auth/login.php">Connexion</a></li>
+        <li><a class="hover:text-indigo-600" href="./auth/register.php">Créer un compte</a></li>
       </ul>
       <ul x-show="open" @click.away="open=false" class="md:hidden absolute right-0 mt-2 bg-white shadow rounded-xl p-3 space-y-2 w-56">
         <li><a class="block px-2 py-1 rounded hover:bg-gray-100" href="/index.php">Accueil</a></li>
         <li><a class="block px-2 py-1 rounded hover:bg-gray-100" href="/formations.php">Formations</a></li>
-        <li><a class="block px-2 py-1 rounded hover:bg-gray-100" href="/forum/index.php">Forum</a></li>
-        <li><a class="block px-2 py-1 rounded hover:bg-gray-100" href="/auth/login.php">Connexion</a></li>
-        <li><a class="block px-2 py-1 rounded hover:bg-gray-100" href="/auth/register.php">Créer un compte</a></li>
+        <li><a class="block px-2 py-1 rounded hover:bg-gray-100" href="./forum/index.php">Forum</a></li>
+        <li><a class="block px-2 py-1 rounded hover:bg-gray-100" href="./auth/login.php">Connexion</a></li>
+        <li><a class="block px-2 py-1 rounded hover:bg-gray-100" href="./auth/register.php">Créer un compte</a></li>
       </ul>
     </nav>
   </div>
@@ -37,7 +37,7 @@
 <main class="max-w-7xl mx-auto px-4 py-8">
 
 <h1 class="text-2xl font-bold mb-4">Mentions légales</h1>
-<p>Contenu indicatif — à adapter.</p>
+<p>Nous sommes à pieds d'œuvre pour mettre à jour nos mentions légales.</p>
 </main>
 <footer class="border-t mt-12">
   <div class="max-w-7xl mx-auto px-4 py-6 text-sm text-gray-600 flex flex-wrap gap-4 justify-between">

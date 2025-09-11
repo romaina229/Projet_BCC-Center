@@ -1,5 +1,5 @@
 <?php
-require 'config.php';
+require __DIR__ . '/../config.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];
@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['users_id'] = $user['id'];
         $_SESSION['nom_prenom'] = $user['nom_prenom'];
         $_SESSION['email'] = $user['email'];
-        header("Location: index.php");
+        header("Location: ../index.php");
         exit;
     } else {
         echo "Identifiants incorrects.";

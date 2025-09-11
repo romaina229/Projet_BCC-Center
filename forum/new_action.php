@@ -1,5 +1,5 @@
 <?php
-require_once "../config.php"; require_login();
+require_once __DIR__ . "/../config.php"; require_login();
 $title = trim($_POST['title'] ?? '');
 $body  = trim($_POST['body'] ?? '');
 if (!$title || !$body) { die("Champs manquants"); }

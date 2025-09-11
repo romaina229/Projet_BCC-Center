@@ -1,5 +1,5 @@
 <?php
-require_once "../config.php"; require_login();
+require_once __DIR__ . "/../config.php"; require_login();
 $u = current_user();
 
 if (!isset($_FILES['file'])) { die("Aucun fichier."); }
