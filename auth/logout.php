@@ -1,6 +1,4 @@
 <?php
-session_start();
+require_once "../config.php";
 session_destroy();
-header("Location: login.php");
-exit;
-?>
+header("Location: /index.php");

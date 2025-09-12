@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . "/../config.php"; require_login();
-$u = current_user(); if ($u['role']!=='formateur' && $u['role']!=='admin') { http_response_code(403); die('Accès refusé'); }
+$user = current_user(); if ($user['role']!=='formateur' && $user['role']!=='admin') { http_response_code(403); die('Accès refusé'); }
 ?>
  <!doctype html>
 <html lang="fr">
@@ -26,28 +26,20 @@ $u = current_user(); if ($u['role']!=='formateur' && $u['role']!=='admin') { htt
         <li><a class="hover:text-indigo-600" href="../index.php">Accueil</a></li>
         <li><a class="hover:text-indigo-600" href="../formations.php">Formations</a></li>
         <li><a class="hover:text-indigo-600" href="../forum/index.php">Forum</a></li>
-        <?php if (is_logged_in()): ?>
           <li><a class="hover:text-indigo-600" href="profile.php">Mon profil</a></li>
           <li><a class="hover:text-indigo-600" href="profile1.php">Mise à jour profil</a></li>
-          <?php if (current_user()['role'] === 'admin'): ?>
             <li><a class="hover:text-indigo-600" href="user.php">Utilisateurs</a></li>
-          <?php endif; ?>
-          <li><a class="hover:text-red-600" href="../auth/logout.php">Déconnexion</a></li>
-        <?php else: ?>
+          <li><a class="hover:text-red-600" href="../auth/logout.php">Se déconnecter</a></li>
       </ul>
       <ul x-show="open" @click.away="open=false" class="md:hidden absolute right-0 mt-2 bg-white shadow rounded-xl p-3 space-y-2 w-56">
         <li><a class="hover:text-indigo-600" href="../index.php">Accueil</a></li>
         <li><a class="hover:text-indigo-600" href="../formations.php">Formations</a></li>
         <li><a class="hover:text-indigo-600" href="../forum/index.php">Forum</a></li>
-        <?php if (is_logged_in()): ?>
           <li><a class="hover:text-indigo-600" href="../qcm/index.php">QCM</a></li>
           <li><a class="hover:text-indigo-600" href="profile.php">Mon profil</a></li>
           <li><a class="hover:text-indigo-600" href="profile1.php">Mise à jour profil</a></li>
-          <?php if (current_user()['role'] === 'admin'): ?>
             <li><a class="hover:text-indigo-600" href="user.php">Utilisateurs</a></li>
-          <li><a class="hover:text-red-600" href="logout.php">Déconnexion</a></li>
-        <?php else: ?>
-          <?php endif; ?>
+          <li><a class="hover:text-red-600" href="logout.php">Se déconnecter</a></li>
     </nav>
   </div>
 </header>
@@ -66,6 +58,7 @@ $u = current_user(); if ($u['role']!=='formateur' && $u['role']!=='admin') { htt
     <span>Adresse : Abomey-Calavi, Bénin<br>Téléphone : +229 01 40 15 24 43<br>Contact : <a href="mailto:boostagecenter@gmail.com" class="hover:text-indigo-600"> courrier électronique</a><br>© 2025 BCC-Center - Tous droits réservés</span>
     <div class="space-x-4">
       <a href="../about.php" class="hover:text-indigo-600">À propos</a>
+	  <a href="https://dclic-lifero.22web.org" target="_blanc" class="hover:text-indigo-600">Dévéloppeur</a>
       <a href="../contact.php" class="hover:text-indigo-600">Contact</a>
       <a href="../legal.php" class="hover:text-indigo-600">Mentions légales</a>
     </div>

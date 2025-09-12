@@ -93,6 +93,7 @@
     <span>Adresse : Abomey-Calavi, Bénin<br>Téléphone : +229 01 40 15 24 43<br>Contact : <a href="mailto:boostagecenter@gmail.com" class="hover:text-indigo-600"> courrier électronique</a><br>© 2025 BCC-Center - Tous droits réservés</span>
     <div class="space-x-4">
       <a href="/about.php" class="hover:text-indigo-600">À propos</a>
+	  <a href="https://dclic-lifero.22web.org" target="_blanc" class="hover:text-indigo-600">Dévéloppeur</a>
       <a href="/contact.php" class="hover:text-indigo-600">Contact</a>
       <a href="/legal.php" class="hover:text-indigo-600">Mentions légales</a>
     </div>

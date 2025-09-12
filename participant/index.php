@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__ . "/../config.php"; require_login();
-$u = current_user(); if ($u['role']!=='participant' && $u['role']!=='admin') { http_response_code(403); die('Accès refusé'); }
+$user = current_user(); 
+if ($user['role']!=='participant' && $user['role']!=='admin') { http_response_code(403); die('Accès refusé'); }
 ?>
 <!doctype html>
 <html lang="fr">
@@ -51,9 +52,9 @@ $u = current_user(); if ($u['role']!=='participant' && $u['role']!=='admin') { h
     </form>
   </div>
   <div class="p-6 bg-white rounded-2xl border shadow">
-    <h2 class="font-semibold mb-2">Consignes à télécharger</h2>
+    <h2 class="font-semibold mb-2">Consignes à télécharger : </h2>
     <ul class="list-disc ms-6 text-sm">
-      <li><a class="text-indigo-600" href="../formateur/listes_consigne.php">Exemple de consigne</a></li>
+    <a  href="../formateur/listes_consige.php" class="text-indigo-600">Exemple de consigne</a>
     </ul>
   </div>
 </div>
@@ -69,6 +70,7 @@ $u = current_user(); if ($u['role']!=='participant' && $u['role']!=='admin') { h
     <div class="space-x-4">
       <a href="../about.php" class="hover:text-indigo-600">À propos</a>
       <a href="../contact.php" class="hover:text-indigo-600">Contact</a>
+	  <a href="https://dclic-lifero.22web.org" target="_blanc" class="hover:text-indigo-600">Dévéloppeur</a>
       <a href="../legal.php" class="hover:text-indigo-600">Mentions légales</a>
     </div>
   </div>

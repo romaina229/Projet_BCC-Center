@@ -29,27 +29,19 @@ $users = current_users();
         <li><a class="hover:text-indigo-600" href="../index.php">Accueil</a></li>
         <li><a class="hover:text-indigo-600" href="../formations.php">Formations</a></li>
         <li><a class="hover:text-indigo-600" href="../forum/index.php">Forum</a></li>
-        <?php if (is_logged_in()): ?>
           <li><a class="hover:text-indigo-600" href="profile.php">Mon profil</a></li>
           <li><a class="hover:text-indigo-600" href="profile1.php">Mise à jour profil</a></li>
-          <?php if (current_user()['role'] === 'admin'): ?>
             <li><a class="hover:text-indigo-600" href="user.php">Utilisateurs</a></li>
-          <?php endif; ?>
           <li><a class="hover:text-red-600" href="logout.php">Déconnexion</a></li>
-        <?php else: ?>
       </ul>
       <ul x-show="open" @click.away="open=false" class="md:hidden absolute right-0 mt-2 bg-white shadow rounded-xl p-3 space-y-2 w-56">
         <li><a class="hover:text-indigo-600" href="../index.php">Accueil</a></li>
         <li><a class="hover:text-indigo-600" href="../formations.php">Formations</a></li>
         <li><a class="hover:text-indigo-600" href="../forum/index.php">Forum</a></li>
-        <?php if (is_logged_in()): ?>
           <li><a class="hover:text-indigo-600" href="profile.php">Mon profil</a></li>
           <li><a class="hover:text-indigo-600" href="profile1.php">Mise à jour profil</a></li>
-          <?php if (current_user()['role'] === 'admin'): ?>
             <li><a class="hover:text-indigo-600" href="user.php">Utilisateurs</a></li>
-          <?php endif; ?>
           <li><a class="hover:text-red-600" href="logout.php">Déconnexion</a></li>
-        <?php else: ?>
     </nav>
   </div>
 </header>

@@ -1,7 +1,9 @@
 <?php
-require __DIR__ . '/../config.php';
-require_login();
-$u = current_user();
+session_start();
+if (!isset($_SESSION['user'])) {
+    header("Location: /auth/login.php");
+    exit;
+}
 ?>
  <!doctype html>
 <html lang="fr">
@@ -27,28 +29,20 @@ $u = current_user();
         <li><a class="hover:text-indigo-600" href="../index.php">Accueil</a></li>
         <li><a class="hover:text-indigo-600" href="../formations.php">Formations</a></li>
         <li><a class="hover:text-indigo-600" href="../forum/index.php">Forum</a></li>
-        <?php if (is_logged_in()): ?>
           <li><a class="hover:text-indigo-600" href="profile.php">Mon profil</a></li>
           <li><a class="hover:text-indigo-600" href="profile1.php">Mise à jour profil</a></li>
-          <?php if (current_user()['role'] === 'admin'): ?>
             <li><a class="hover:text-indigo-600" href="user.php">Utilisateurs</a></li>
-          <?php endif; ?>
           <li><a class="hover:text-red-600" href="logout.php">Déconnexion</a></li>
-        <?php else: ?>
       </ul>
       <ul x-show="open" @click.away="open=false" class="md:hidden absolute right-0 mt-2 bg-white shadow rounded-xl p-3 space-y-2 w-56">
         <li><a class="hover:text-indigo-600" href="../index.php">Accueil</a></li>
         <li><a class="hover:text-indigo-600" href="../formations.php">Formations</a></li>
         <li><a class="hover:text-indigo-600" href="../forum/index.php">Forum</a></li>
-        <?php if (is_logged_in()): ?>
           <li><a class="hover:text-indigo-600" href="../qcm/index.php">QCM</a></li>
           <li><a class="hover:text-indigo-600" href="profile.php">Mon profil</a></li>
           <li><a class="hover:text-indigo-600" href="profile1.php">Mise à jour profil</a></li>
-          <?php if (current_user()['role'] === 'admin'): ?>
             <li><a class="hover:text-indigo-600" href="user.php">Utilisateurs</a></li>
           <li><a class="hover:text-red-600" href="logout.php">Déconnexion</a></li>
-        <?php else: ?>
-          <?php endif; ?>
     </nav>
   </div>
 </header>
@@ -68,13 +62,14 @@ $u = current_user();
     <div class="text-sm text-gray-600">gestion des utilisateurs, programmation des formations, suivi global et tout autre tâches utiles pour la plateforme</div>
   </a>
 </div>
-<p class="mt-6 text-sm">Connecté en tant que: <strong><?php echo htmlspecialchars($u['name']); ?></strong> (<?php echo htmlspecialchars($u['role']); ?>)  —  <a class="text-indigo-600" href="/auth/logout.php">Se déconnecter</a></p>
+<p class="mt-6 text-sm">Connecté en tant que: <strong><?php echo htmlspecialchars($_SESSION['user']['nom_prenom']); ?></strong> : <strong class="text-green-500"><?php echo htmlspecialchars($_SESSION['user']['role']); ?> </strong>  —  <a class="text-indigo-600" href="/auth/logout.php">Se déconnecter</a></p>
 </main>
 <footer class="border-t mt-12">
   <div class="max-w-7xl mx-auto px-4 py-6 text-sm text-gray-600 flex flex-wrap gap-4 justify-between">
     <span>Adresse : Abomey-Calavi, Bénin<br>Téléphone : +229 01 40 15 24 43<br>Contact : <a href="mailto:boostagecenter@gmail.com" class="hover:text-indigo-600"> courrier électronique</a><br>© 2025 BCC-Center - Tous droits réservés</span>
     <div class="space-x-4">
       <a href="../about.php" class="hover:text-indigo-600">À propos</a>
+	  <a href="https://dclic-lifero.22web.org" target="_blanc" class="hover:text-indigo-600">Dévéloppeur</a>
       <a href="../contact.php" class="hover:text-indigo-600">Contact</a>
       <a href="../legal.php" class="hover:text-indigo-600">Mentions légales</a>
     </div>

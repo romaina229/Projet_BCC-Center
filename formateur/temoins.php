@@ -1,7 +1,8 @@
 <?php
-require_once __DIR__ . "/../config.php"; require_login(); require_role('formateur');
+require_once __DIR__ . "/../config.php"; 
+require_login(); 
+require_role('formateur');
 
-if ($_SESSION['role'] !== 'formateur') die("Accès refusé");
 if (isset($_POST['titre'])) {
     $stmt = $pdo->prepare("INSERT INTO formations (titre, description, formateur_id) VALUES (?, ?, ?)");
     $stmt->execute([$_POST['titre'], $_POST['description'], $_SESSION['id']]);
@@ -51,10 +52,10 @@ if (isset($_POST['titre'])) {
   Description:<br>
   <textarea name="description" class="border rounded-xl p-3" required></textarea><br>
   Fichier : <input type="file" name="file" class="border rounded-xl p-3"><br>
-  <button class="px-4 py-2 bg-indigo-600 text-white rounded-xl">Créer</button>
+  <button class="px-4 py-2 bg-indigo-600 text-white rounded-xl">Créer</button><br>
+<p><a href="listes_consige.php" class="text-indigo-600">Voir les consignes</a>    -  
+<a href="temoins.php" class="text-indigo-600">revenir en haut</a></p>
 </form>
-<p><a href="consignes_list.php" class="text-indigo-600">Voir les consignes</a></p><br>
-<p><a href="temoins.php" class="text-indigo-600">revenir en haut</a></p>
 </main>
 <footer class="border-t mt-12">
   <div class="max-w-7xl mx-auto px-4 py-6 text-sm text-gray-600 flex flex-wrap gap-4 justify-between">

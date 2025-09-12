@@ -1,9 +1,16 @@
-<?php require __DIR__ . '/../config.php';
+<?php
+session_start();
+require __DIR__ . '/../config.php';
+
 $token = $_GET['token'] ?? '';
-$stmt = $pdo->prepare("SELECT * FROM users WHERE reset_token = ?");
+if (!$token) die("Token manquant.");
+
+// Vérifier token et expiration
+$stmt = $pdo->prepare("SELECT * FROM users WHERE reset_token=? AND reset_expires > NOW()");
 $stmt->execute([$token]);
 $user = $stmt->fetch();
-if (!$user) { echo "Lien invalide."; exit; }
+if (!$user) die("Token invalide ou expiré.");
+
 ?>
  <!doctype html>
 <html lang="fr">
@@ -34,32 +41,28 @@ if (!$user) { echo "Lien invalide."; exit; }
           <li><a class="hover:text-indigo-600" href="profile1.php">Mise à jour profil</a></li>
           <?php if (current_user()['role'] === 'admin'): ?>
             <li><a class="hover:text-indigo-600" href="user.php">Utilisateurs</a></li>
-          <?php endif; ?>
           <li><a class="hover:text-red-600" href="logout.php">Déconnexion</a></li>
-        <?php else: ?>
       </ul>
       <ul x-show="open" @click.away="open=false" class="md:hidden absolute right-0 mt-2 bg-white shadow rounded-xl p-3 space-y-2 w-56">
         <li><a class="hover:text-indigo-600" href="../index.php">Accueil</a></li>
         <li><a class="hover:text-indigo-600" href="../formations.php">Formations</a></li>
         <li><a class="hover:text-indigo-600" href="../forum/index.php">Forum</a></li>
-        <?php if (is_logged_in()): ?>
           <li><a class="hover:text-indigo-600" href="../qcm/index.php">QCM</a></li>
           <li><a class="hover:text-indigo-600" href="profile.php">Mon profil</a></li>
           <li><a class="hover:text-indigo-600" href="profile1.php">Mise à jour profil</a></li>
-          <?php if (current_user()['role'] === 'admin'): ?>
             <li><a class="hover:text-indigo-600" href="user.php">Utilisateurs</a></li>
           <li><a class="hover:text-red-600" href="logout.php">Déconnexion</a></li>
-        <?php else: ?>
-          <?php endif; ?>
     </nav>
   </div>
 </header>
 <main class="max-w-7xl mx-auto px-4 py-8">
 <h2 class="text-xl font-bold mb-4">Réinitialiser le mot de passe</h2>
-<form method="post" action="reset_password_action.php" class="space-y-4">
+<form method="post" action="reset_password_action.php" class="space-y-4 max-w-md">
+    <h2 class="text-2xl font-bold mb-4">Réinitialiser le mot de passe</h2>
     <input type="hidden" name="token" value="<?= htmlspecialchars($token) ?>">
-    <input type="password" name="new_password" placeholder="Nouveau mot de passe" required class="border p-2 w-full">
-    <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded">Réinitialiser</button>
+    <input type="password" name="password" placeholder="Nouveau mot de passe" required class="border p-2 w-full">
+    <input type="password" name="confirm_password" placeholder="Confirmer le mot de passe" required class="border p-2 w-full">
+    <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">Valider</button>
 </form>
 <footer class="border-t mt-12">
   <div class="max-w-7xl mx-auto px-4 py-6 text-sm text-gray-600 flex flex-wrap gap-4 justify-between">

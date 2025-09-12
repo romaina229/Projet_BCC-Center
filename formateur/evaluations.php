@@ -1,8 +1,19 @@
+ <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+?>
+
 <?php
-require __DIR__ . '/../config.php'; require_login(); require_role('formateur');
-$stmt = $pdo->query("SELECT e.id, u.name, e.path, e.comment FROM exercices e JOIN users u ON u.id=e.user_id ORDER BY e.id DESC");
+require __DIR__ . '/../config.php';
+require_login();
+require_role('formateur');
+
+// Sélection corrigée avec les bons noms de colonnes
+$stmt = $pdo->query("SELECT e.id, u.nom_prenom, e.path, e.comment FROM exercices e JOIN users u ON u.id=e.user_id ORDER BY e.id DESC");
 $rows = $stmt->fetchAll();
 ?>
+
 <!doctype html>
 <html lang="fr">
 <head>
@@ -49,7 +60,7 @@ $rows = $stmt->fetchAll();
   <tbody>
   <?php foreach($rows as $r): ?>
     <tr class="border-t">
-      <td class="p-3"><?php echo htmlspecialchars($r['name']); ?></td>
+      <td class="p-3"><?php echo htmlspecialchars($r['nom_prenom']); ?></td>
       <td class="p-3"><a class="text-indigo-600" href="<?php echo htmlspecialchars($r['path']); ?>" target="_blank">Télécharger</a></td>
       <td class="p-3 text-sm"><?php echo htmlspecialchars($r['comment']); ?></td>
       <td class="p-3">

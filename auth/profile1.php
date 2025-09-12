@@ -59,28 +59,20 @@ $user = $stmt->fetch();
         <li><a class="hover:text-indigo-600" href="../index.php">Accueil</a></li>
         <li><a class="hover:text-indigo-600" href="../formations.php">Formations</a></li>
         <li><a class="hover:text-indigo-600" href="../forum/index.php">Forum</a></li>
-        <?php if (is_logged_in()): ?>
           <li><a class="hover:text-indigo-600" href="profile.php">Mon profil</a></li>
           <li><a class="hover:text-indigo-600" href="profile1.php">Mise à jour profil</a></li>
-          <?php if (current_user()['role'] === 'admin'): ?>
             <li><a class="hover:text-indigo-600" href="user.php">Utilisateurs</a></li>
-          <?php endif; ?>
           <li><a class="hover:text-red-600" href="logout.php">Déconnexion</a></li>
-        <?php else: ?>
       </ul>
       <ul x-show="open" @click.away="open=false" class="md:hidden absolute right-0 mt-2 bg-white shadow rounded-xl p-3 space-y-2 w-56">
         <li><a class="hover:text-indigo-600" href="../index.php">Accueil</a></li>
         <li><a class="hover:text-indigo-600" href="../formations.php">Formations</a></li>
         <li><a class="hover:text-indigo-600" href="../forum/index.php">Forum</a></li>
-        <?php if (is_logged_in()): ?>
           <li><a class="hover:text-indigo-600" href="../qcm/index.php">QCM</a></li>
           <li><a class="hover:text-indigo-600" href="profile.php">Mon profil</a></li>
           <li><a class="hover:text-indigo-600" href="profile1.php">Mise à jour profil</a></li>
-          <?php if (current_user()['role'] === 'admin'): ?>
             <li><a class="hover:text-indigo-600" href="user.php">Utilisateurs</a></li>
           <li><a class="hover:text-red-600" href="logout.php">Déconnexion</a></li>
-        <?php else: ?>
-          <?php endif; ?>
     </nav>
   </div>
 </header>
@@ -89,8 +81,6 @@ $user = $stmt->fetch();
 
   <?php if (!empty($_GET['success'])): ?>
     <p class="bg-green-100 text-green-700 p-3 rounded mb-4">Profil mis à jour avec succès</p>
-  <?php endif; ?>
-
   <form method="post" enctype="multipart/form-data" class="bg-white shadow rounded-2xl p-6 grid gap-4">
     <div>
       <label class="block text-sm font-medium">Nom complet</label>

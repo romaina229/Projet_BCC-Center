@@ -1,7 +1,15 @@
 <?php
 require_once __DIR__ . "/../config.php";
-$threads = $pdo->query("SELECT f.id, f.title, u.name as author FROM forum_threads f JOIN users u ON u.id=f.user_id ORDER BY f.id DESC")->fetchAll();
+
+// Utiliser le vrai nom de colonne dans users
+$threads = $pdo->query("
+    SELECT f.id, f.title, u.nom_prenom as author 
+    FROM forum_threads f 
+    JOIN users u ON u.id = f.user_id 
+    ORDER BY f.id DESC
+")->fetchAll(PDO::FETCH_ASSOC);
 ?>
+
 <!doctype html>
 <html lang="fr">
 <head>
@@ -26,14 +34,14 @@ $threads = $pdo->query("SELECT f.id, f.title, u.name as author FROM forum_thread
         <li><a class="hover:text-indigo-600" href="../formations.php">Formations</a></li>
         <li><a class="hover:text-indigo-600" href="/forum/index.php">Forum</a></li>
         <li><a class="hover:text-indigo-600" href="../auth/login.php">Connexion</a></li>
-        <li><a class="hover:text-indigo-600" href="../auth/register.php">Créer un compte</a></li>
+        <li><a class="hover:text-indigo-600" href="../auth/logout.php">Déconnexion</a></li>
       </ul>
       <ul x-show="open" @click.away="open=false" class="md:hidden absolute right-0 mt-2 bg-white shadow rounded-xl p-3 space-y-2 w-56">
         <li><a class="block px-2 py-1 rounded hover:bg-gray-100" href="../index.php">Accueil</a></li>
         <li><a class="block px-2 py-1 rounded hover:bg-gray-100" href="../formations.php">Formations</a></li>
         <li><a class="block px-2 py-1 rounded hover:bg-gray-100" href="/forum/index.php">Forum</a></li>
         <li><a class="block px-2 py-1 rounded hover:bg-gray-100" href="../auth/login.php">Connexion</a></li>
-        <li><a class="block px-2 py-1 rounded hover:bg-gray-100" href="../auth/register.php">Créer un compte</a></li>
+        <li><a class="block px-2 py-1 rounded hover:bg-gray-100" href="../auth/logout.php">Déconnexion</a></li>
       </ul>
     </nav>
   </div>

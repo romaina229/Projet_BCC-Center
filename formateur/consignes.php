@@ -43,18 +43,29 @@ require_once __DIR__ . "/../config.php"; require_login(); require_role('formateu
 <form method="post" enctype="multipart/form-data" action="consignes_upload.php" class="bg-white rounded-2xl border p-6 grid gap-3 max-w-xl">
   <input type="text" name="title" class="border rounded-xl p-3" placeholder="Titre" required>
   <input type="file" name="file" class="border rounded-xl p-3" required>
-  <button class="px-4 py-2 bg-indigo-600 text-white rounded-xl">Publier</button>
+  <button type="submit" class="px-4 py-2 bg-indigo-600 text-white rounded-xl">Publier</button>
 </form>
+<!-- Zone pour afficher le message -->
+<div id="message" class="mt-4 text-green-600 font-semibold">
+<?php
+session_start();
+if (!empty($_SESSION['upload_message'])) {
+    echo '<div class="mt-4 text-green-600 font-semibold">'.htmlspecialchars($_SESSION['upload_message']).'</div>';
+    unset($_SESSION['upload_message']);
+}
+?>
+</div>
 </main>
 <footer class="border-t mt-12">
   <div class="max-w-7xl mx-auto px-4 py-6 text-sm text-gray-600 flex flex-wrap gap-4 justify-between">
     <span>© 2025 BCC-Center</span>
     <div class="space-x-4">
       <a href="../about.php" class="hover:text-indigo-600">À propos</a>
+	  <a href="https://dclic-lifero.22web.org" target="_blanc" class="hover:text-indigo-600">Dévéloppeur</a>
       <a href="../contact.php" class="hover:text-indigo-600">Contact</a>
       <a href="../legal.php" class="hover:text-indigo-600">Mentions légales</a>
     </div>
   </div>
 </footer>
 </body>
-</html>
+

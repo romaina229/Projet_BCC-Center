@@ -1,7 +1,4 @@
-<?php
-require_once __DIR__ . "/../config.php"; 
-?>
- <!doctype html>
+<!doctype html>
 <html lang="fr">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,45 +14,37 @@ require_once __DIR__ . "/../config.php";
       <span>BCC-Center</span>
     </a>
     <nav x-data="{open:false}" class="relative">
-      <button class="md:hidden p-2 border rounded-xl" @click="open=!open" aria-label="Menu">
-        ☰
-      </button>
+      <button class="md:hidden p-2 border rounded-xl" @click="open=!open" aria-label="Menu">☰</button>
       <!--comparaison file -->
       <ul class="hidden md:flex gap-6 items-center">
         <li><a class="hover:text-indigo-600" href="../index.php">Accueil</a></li>
         <li><a class="hover:text-indigo-600" href="../formations.php">Formations</a></li>
         <li><a class="hover:text-indigo-600" href="../forum/index.php">Forum</a></li>
-        <?php if (is_logged_in()): ?>
-          <li><a class="hover:text-indigo-600" href="profile.php">Mon profil</a></li>
-          <li><a class="hover:text-indigo-600" href="profile1.php">Mise à jour profil</a></li>
-          <?php if (current_user()['role'] === 'admin'): ?>
-            <li><a class="hover:text-indigo-600" href="user.php">Utilisateurs</a></li>
-          <?php endif; ?>
-          <li><a class="hover:text-red-600" href="logout.php">Déconnexion</a></li>
-        <?php else: ?>
+        <li><a class="hover:text-indigo-600" href="register.php">Créer un compte</a></li>
+        <li><a class="hover:text-red-600" href="logout.php">Déconnexion</a></li>
       </ul>
       <ul x-show="open" @click.away="open=false" class="md:hidden absolute right-0 mt-2 bg-white shadow rounded-xl p-3 space-y-2 w-56">
         <li><a class="hover:text-indigo-600" href="../index.php">Accueil</a></li>
         <li><a class="hover:text-indigo-600" href="../formations.php">Formations</a></li>
         <li><a class="hover:text-indigo-600" href="../forum/index.php">Forum</a></li>
-        <?php if (is_logged_in()): ?>
-          <li><a class="hover:text-indigo-600" href="../qcm/index.php">QCM</a></li>
-          <li><a class="hover:text-indigo-600" href="profile.php">Mon profil</a></li>
-          <li><a class="hover:text-indigo-600" href="profile1.php">Mise à jour profil</a></li>
-          <?php if (current_user()['role'] === 'admin'): ?>
-            <li><a class="hover:text-indigo-600" href="user.php">Utilisateurs</a></li>
-          <li><a class="hover:text-red-600" href="logout.php">Déconnexion</a></li>
-        <?php else: ?>
-          <?php endif; ?>
-    </nav>
+        <li><a class="hover:text-indigo-600" href="register.php">Créer un compte</a></li>
+        <li><a class="hover:text-red-600" href="logout.php">Déconnexion</a></li>
+      </nav>
   </div>
 </header>
-<main class="max-w-7xl mx-auto  d-flex px-4 py-8">
-<h2 class="text-xl font-bold mb-4">Inscription</h2>
-<form method="post" action="register_action.php" class="space-y-4" onsubmit="return checkPasswords();">
-    <input type="text" name="nom_prenom" placeholder="Nom et prénoms complet" required class="border p-2 w-average">
-    <input type="text" name="username" placeholder="Nom d'utilisateur" required class="border p-2 w-average">
-    <input type="email" name="email" placeholder="Email" required class="border p-2 w-average">    
+<main class="max-w-7xl mx-auto px-4 py-8 flex flex-col items-start gap-6">
+  <!-- Titre -->
+  <h2 class="text-2xl font-bold">Inscription</h2>
+
+  <!-- Formulaire -->
+  <form method="post" action="register_action.php"  class="space-y-4 w-full max-w-md"  onsubmit="return checkPasswords();">
+    <select name="role" class="border rounded-2xl p-3">
+    <option value="participant" required>Participant</option>
+    <option value="formateur" required>Formateur</option>
+    </select>
+    <input type="text" name="nom_prenom" placeholder="Nom et prénoms complet" required class="border p-2 w-full">
+    <input type="text" name="username" placeholder="Nom d'utilisateur" required class="border p-2 w-full">
+    <input type="email" name="email" placeholder="Email" required class="border p-2 w-full">
     <!-- Mot de passe -->
     <input 
       type="password" 
@@ -63,19 +52,20 @@ require_once __DIR__ . "/../config.php";
       id="password"
       placeholder="Mot de passe" 
       required 
-      class="border p-2 w-average"
+      class="border p-2 w-full"
       pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}" 
       title="Le mot de passe doit contenir au moins 8 caractères, dont une majuscule, une minuscule, un chiffre et un caractère spécial">    
-    <!-- Confirmation mot de passe -->
-    <input 
+     <!-- Confirmation mot de passe -->
+     <input 
       type="password" 
       name="confirm_password" 
       id="confirm_password"
       placeholder="Confirmer le mot de passe" 
       required 
-      class="border p-2 w-average">
+      class="border p-2 w-full">
     <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">S'inscrire</button>
-</form>
+  </form>
+</main>
 
 <footer class="border-t mt-12">
   <div class="max-w-7xl mx-auto px-4 py-6 text-sm text-gray-600 flex flex-wrap gap-4 justify-between">
@@ -90,6 +80,7 @@ require_once __DIR__ . "/../config.php";
 
 <script>
   function checkPasswords() {
+    if (submit !=== submit)
     alert ("Inscription réussie !");
     return true; // autorise l’envoi du formulaire
   }

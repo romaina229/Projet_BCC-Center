@@ -8,8 +8,6 @@ if (!in_array(current_user()['role'], ['admin'])) {
 
 $stmt = $pdo->query("SELECT * FROM users ORDER BY created_at DESC");
 $users = $stmt->fetchAll();
-?><?php
-require_once __DIR__ . "/../config.php"; 
 ?>
  <!doctype html>
 <html lang="fr">
@@ -35,28 +33,20 @@ require_once __DIR__ . "/../config.php";
         <li><a class="hover:text-indigo-600" href="../index.php">Accueil</a></li>
         <li><a class="hover:text-indigo-600" href="../formations.php">Formations</a></li>
         <li><a class="hover:text-indigo-600" href="../forum/index.php">Forum</a></li>
-        <?php if (is_logged_in()): ?>
           <li><a class="hover:text-indigo-600" href="profile.php">Mon profil</a></li>
           <li><a class="hover:text-indigo-600" href="profile1.php">Mise à jour profil</a></li>
-          <?php if (current_user()['role'] === 'admin'): ?>
             <li><a class="hover:text-indigo-600" href="user.php">Utilisateurs</a></li>
-          <?php endif; ?>
           <li><a class="hover:text-red-600" href="logout.php">Déconnexion</a></li>
-        <?php else: ?>
       </ul>
       <ul x-show="open" @click.away="open=false" class="md:hidden absolute right-0 mt-2 bg-white shadow rounded-xl p-3 space-y-2 w-56">
         <li><a class="hover:text-indigo-600" href="../index.php">Accueil</a></li>
         <li><a class="hover:text-indigo-600" href="../formations.php">Formations</a></li>
         <li><a class="hover:text-indigo-600" href="../forum/index.php">Forum</a></li>
-        <?php if (is_logged_in()): ?>
           <li><a class="hover:text-indigo-600" href="../qcm/index.php">QCM</a></li>
           <li><a class="hover:text-indigo-600" href="profile.php">Mon profil</a></li>
           <li><a class="hover:text-indigo-600" href="profile1.php">Mise à jour profil</a></li>
-          <?php if (current_user()['role'] === 'admin'): ?>
             <li><a class="hover:text-indigo-600" href="user.php">Utilisateurs</a></li>
           <li><a class="hover:text-red-600" href="logout.php">Déconnexion</a></li>
-        <?php else: ?>
-          <?php endif; ?>
     </nav>
   </div>
 </header>
@@ -78,7 +68,6 @@ require_once __DIR__ . "/../config.php";
         </tr>
       </thead>
       <tbody>
-        <?php foreach ($users as $u): ?>
           <tr class="hover:bg-gray-50">
             <td class="p-3 border text-center">
               <img src="<?= $u['photo'] ? htmlspecialchars($u['photo']) : '/default-avatar.png' ?>" 
@@ -103,7 +92,6 @@ require_once __DIR__ . "/../config.php";
                  class="text-red-600 hover:underline">🗑️ Supprimer</a>
             </td>
           </tr>
-        <?php endforeach; ?>
       </tbody>
     </table>
   </div>

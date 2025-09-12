@@ -192,6 +192,7 @@
             <a href="#" class="text-indigo-400 hover:underline">LinkedIn</a>
         </p>
         <p class="left"><a href="/about.php" class="text-indigo-400 hover:underline">À propos</a>,
+	    <a href="https://dclic-lifero.22web.org" target="_blanc" class="hover:text-indigo-600">Dévéloppeur</a>,
         <a href="/contact.php" class="text-indigo-400 hover:underline">Contact</a>,
         <a href="/legal.php" class="text-indigo-400 hover:underline">Mentions légales</a></p>
         </div>

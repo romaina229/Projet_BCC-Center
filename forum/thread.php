@@ -1,11 +1,11 @@
 <?php
 require_once __DIR__ . "/../config.php";
 $id = intval($_GET['id'] ?? 0);
-$stmt = $pdo->prepare("SELECT f.*, u.name as author FROM forum_threads f JOIN users u ON u.id=f.user_id WHERE f.id=?");
+$stmt = $pdo->prepare("SELECT f.*, u.nom_prenom as author FROM forum_threads f JOIN users u ON u.id=f.user_id WHERE f.id=?");
 $stmt->execute([$id]);
 $thread = $stmt->fetch();
 if (!$thread) { http_response_code(404); die("Sujet introuvable"); }
-$posts = $pdo->prepare("SELECT p.*, u.name as author FROM forum_posts p JOIN users u ON u.id=p.user_id WHERE p.thread_id=? ORDER BY p.id ASC");
+$posts = $pdo->prepare("SELECT p.*, u.nom_prenom as author FROM forum_posts p JOIN users u ON u.id=p.user_id WHERE p.thread_id=? ORDER BY p.id ASC");
 $posts->execute([$id]);
 $posts = $posts->fetchAll();
 ?>

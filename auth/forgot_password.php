@@ -17,36 +17,21 @@ require_once __DIR__ . "/../config.php";
       <span>BCC-Center</span>
     </a>
     <nav x-data="{open:false}" class="relative">
-      <button class="md:hidden p-2 border rounded-xl" @click="open=!open" aria-label="Menu">
-        ☰
-      </button>
+      <button class="md:hidden p-2 border rounded-xl" @click="open=!open" aria-label="Menu">☰</button>
       <!--comparaison file -->
       <ul class="hidden md:flex gap-6 items-center">
         <li><a class="hover:text-indigo-600" href="../index.php">Accueil</a></li>
         <li><a class="hover:text-indigo-600" href="../formations.php">Formations</a></li>
         <li><a class="hover:text-indigo-600" href="../forum/index.php">Forum</a></li>
-        <?php if (is_logged_in()): ?>
-          <li><a class="hover:text-indigo-600" href="/auth/profile.php">Mon profil</a></li>
-          <li><a class="hover:text-indigo-600" href="/auth/profile1.php">Mise à jour profil</a></li>
-
-          <?php if (current_user()['role'] === 'admin'): ?>
-            <li><a class="hover:text-indigo-600" href="/auth/user.php">Utilisateurs</a></li>
-          <?php endif; ?>
-          <li><a class="hover:text-red-600" href="logout.php">Déconnexion</a></li>
-        <?php else: ?>
+        <li><a class="hover:text-red-600" href="login.php">Connexion</a></li>
+        <li><a class="hover:text-red-600" href="logout.php">Déconnexion</a></li>
       </ul>
       <ul x-show="open" @click.away="open=false" class="md:hidden absolute right-0 mt-2 bg-white shadow rounded-xl p-3 space-y-2 w-56">
         <li><a class="hover:text-indigo-600" href="../index.php">Accueil</a></li>
         <li><a class="hover:text-indigo-600" href="../formations.php">Formations</a></li>
         <li><a class="hover:text-indigo-600" href="../forum/index.php">Forum</a></li>
-        <?php if (is_logged_in()): ?>
-          <li><a class="hover:text-indigo-600" href="/auth/profile.php">Mon profil</a></li>
-          <li><a class="hover:text-indigo-600" href="/auth/profile1.php">Mise à jour profil</a></li>
-          <?php if (current_user()['role'] === 'admin'): ?>
-            <li><a class="hover:text-indigo-600" href="/auth/user.php">Utilisateurs</a></li>
-          <?php endif; ?>
-          <li><a class="hover:text-red-600" href="logout.php">Déconnexion</a></li>
-        <?php else: ?>
+        <li><a class="hover:text-red-600" href="login.php">Connexion</a></li>
+        <li><a class="hover:text-red-600" href="logout.php">Déconnexion</a></li>
     </nav>
   </div>
 </header>

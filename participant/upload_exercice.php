@@ -1,9 +1,9 @@
 <?php
-require_once __DIR__ . "/../config.php"; require_login();
+require_once "../config.php"; require_login();
 $u = current_user();
 
 if (!isset($_FILES['file'])) { die("Aucun fichier."); }
-$dir = __DIR__ . "/../storage/exercices/" . intval($u['id']);
+$dir = __DIR__ . "/..storage/exercices/" . intval($u['id']);
 if (!is_dir($dir)) { mkdir($dir, 0777, true); }
 $basename = basename($_FILES['file']['name']);
 $target = $dir . "/" . time() . "_" . preg_replace('/[^a-zA-Z0-9._-]/','_', $basename);

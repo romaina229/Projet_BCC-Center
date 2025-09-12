@@ -62,6 +62,7 @@ $quizzes = $pdo->query("SELECT id, title FROM quizzes ORDER BY id DESC")->fetchA
     <span>© 2025 BCC-Center</span>
     <div class="space-x-4">
       <a href="../about.php" class="hover:text-indigo-600">À propos</a>
+	  <a href="https://dclic-lifero.22web.org" target="_blanc" class="hover:text-indigo-600">Dévéloppeur</a>
       <a href="../contact.php" class="hover:text-indigo-600">Contact</a>
       <a href="../legal.php" class="hover:text-indigo-600">Mentions légales</a>
     </div>

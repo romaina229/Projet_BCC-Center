@@ -1,9 +1,10 @@
 <?php
 $dir = __DIR__ . "/../storage/consignes/";   // chemin réel
-$urlPath = "../storage/consignes/";         // chemin public
+$urlPath = "/storage/consignes/";         // chemin public
 
-echo "<h2>📚 Liste des consignes</h2>";
-echo "<ul>";
+ echo "<h1>📚 Liste des consignes</h1>";
+
+echo "<ol>";
 
 if (is_dir($dir)) {
     $files = scandir($dir);
@@ -15,5 +16,5 @@ if (is_dir($dir)) {
 } else {
     echo "<p>Le dossier des consignes est introuvable.</p>";
 }
-echo "</ul>";
+echo "<ol>";
 ?>
