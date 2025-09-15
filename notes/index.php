@@ -47,9 +47,20 @@ $badges = $badges->fetchAll();
 </header>
 <main class="max-w-7xl mx-auto px-4 py-8">
 <div class="bg-white rounded-2xl border shadow p-6">
-  <h2 class="font-semibold mb-3">Badges</h2>
-  <div class="flex flex-wrap gap-2">
-    <?php foreach($badges as $b): ?>
+<h1 class="text-2xl font-bold mb-4">Notes & Badges</h1>
+<section class="grid md:grid-cols-2 gap-6">
+  <div class="bg-white rounded-2xl border shadow p-6">
+    <h2 class="font-semibold mb-3">Notes</h2>
+    <ul class="text-sm space-y-2">
+      <?php foreach($notes as $n): ?>
+      <li>Exercice: <a class="text-indigo-600" href="<?php echo htmlspecialchars($n['path']); ?>" target="_blank">fichier</a> — Note: <strong><?php echo intval($n['score']); ?>/100</strong></li>
+      <?php endforeach; ?>
+    </ul>
+  </div>
+  <div class="bg-white rounded-2xl border shadow p-6">
+    <h2 class="font-semibold mb-3">Badges</h2>
+    <div class="flex flex-wrap gap-2">
+       <?php foreach($badges as $b): ?>
       <?php
         $icon = '';
         if ($b['label'] === 'Excellent') {
@@ -68,9 +79,10 @@ $badges = $badges->fetchAll();
         <?php echo htmlspecialchars($b['label']); ?>
       </span>
     <?php endforeach; ?>
+    </div>
   </div>
-</div>
 </section>
+<div class="bg-white rounded-2xl border shadow p-6"><a href="../about.php" class="hover:text-indigo-600">Retour</a></div>
 </main>
 <footer class="border-t mt-12">
   <div class="max-w-7xl mx-auto px-4 py-6 text-sm text-gray-600 flex flex-wrap gap-4 justify-between">

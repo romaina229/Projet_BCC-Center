@@ -1,0 +1,396 @@
+<?php
+// ======= CONFIGURATION ======
+require_once 'vendor/autoload.php'; // Chargement de Composer
+require_once 'config.php';
+
+use PhpOffice\PhpWord\TemplateProcessor;
+use Spipu\Html2Pdf\Html2Pdf;
+
+class GestionnaireAttestation {
+    private $templatePath;
+    private $outputDir;
+    private $conditions;
+    
+    public function __construct($templatePath, $outputDir = 'attestations/') {
+        $this->templatePath = $templatePath;
+        $this->outputDir = $outputDir;
+        $this->conditions = [];
+        
+        // Créer le répertoire de sortie s'il n'existe pas
+        if (!file_exists($this->outputDir)) {
+            mkdir($this->outputDir, 0777, true);
+        }
+    }
+    
+    /**
+     * Ajouter une condition à vérifier
+     */
+    public function ajouterCondition($nom, $callback) {
+        $this->conditions[$nom] = $callback;
+    }
+    
+    /**
+     * Vérifier si toutes les conditions sont remplies
+     */
+    public function verifierConditions() {
+        foreach ($this->conditions as $nom => $condition) {
+            if (!call_user_func($condition)) {
+                throw new Exception("Condition non satisfaite: $nom");
+            }
+        }
+        return true;
+    }
+    
+    /**
+     * Générer l'attestation à partir des données
+     */
+    public function genererAttestation($donnees, $formatSortie = 'pdf') {
+        try {
+            // Vérifier les conditions
+            $this->verifierConditions();
+            
+            // Vérifier que le modèle existe
+            if (!file_exists($this->templatePath)) {
+                throw new Exception("Modèle Word introuvable: " . $this->templatePath);
+            }
+            
+            // Traitement du template Word
+            $templateProcessor = new TemplateProcessor($this->templatePath);
+            
+            // Remplacer les placeholders par les données
+            foreach ($donnees as $key => $value) {
+                $templateProcessor->setValue($key, $value);
+            }
+            
+            // Générer un nom de fichier unique
+            $nomFichier = 'attestation_' . date('Y-m-d_H-i-s') . '_' . uniqid();
+            $fichierWord = $this->outputDir . $nomFichier . '.docx';
+            
+            // Sauvegarder le document Word
+            $templateProcessor->saveAs($fichierWord);
+            
+            // Convertir en PDF si demandé
+            if ($formatSortie === 'pdf') {
+                $fichierPDF = $this->outputDir . $nomFichier . '.pdf';
+                $this->convertirWordEnPDF($fichierWord, $fichierPDF);
+                
+                // Supprimer le fichier Word si on veut garder seulement le PDF
+                unlink($fichierWord);
+                
+                return $fichierPDF;
+            }
+            
+            return $fichierWord;
+            
+        } catch (Exception $e) {
+            error_log("Erreur génération attestation: " . $e->getMessage());
+            return false;
+        }
+    }
+    
+    /**
+     * Conversion Word vers PDF
+     */
+    private function convertirWordEnPDF($fichierWord, $fichierPDF) {
+        // Méthode 1: Utilisation de LibreOffice (recommandé pour serveur)
+        if ($this->disponibleLibreOffice()) {
+            $command = "libreoffice --headless --convert-to pdf --outdir " . 
+                       escapeshellarg(dirname($fichierPDF)) . " " . 
+                       escapeshellarg($fichierWord) . " 2>&1";
+            
+            exec($command, $output, $returnCode);
+            
+            if ($returnCode === 0) {
+                $pdfGenere = dirname($fichierPDF) . '/' . pathinfo($fichierWord, PATHINFO_FILENAME) . '.pdf';
+                if (file_exists($pdfGenere)) {
+                    rename($pdfGenere, $fichierPDF);
+                    return true;
+                }
+            }
+        }
+        
+        // Méthode 2: Conversion via PHPWord (moins fiable pour le formatage)
+        $phpWord = \PhpOffice\PhpWord\IOFactory::load($fichierWord);
+        $htmlWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'HTML');
+        
+        $htmlTempFile = tempnam(sys_get_temp_dir(), 'phpword');
+        $htmlWriter->save($htmlTempFile);
+        
+        $htmlContent = file_get_contents($htmlTempFile);
+        unlink($htmlTempFile);
+        
+        // Convertir HTML en PDF
+        $html2pdf = new Html2Pdf('P', 'A4', 'fr', true, 'UTF-8', array(10, 15, 10, 15));
+        $html2pdf->writeHTML($htmlContent);
+        $html2pdf->output($fichierPDF, 'F');
+        
+        return true;
+    }
+    
+    /**
+     * Vérifier si LibreOffice est disponible
+     */
+    private function disponibleLibreOffice() {
+        exec('which libreoffice', $output, $returnCode);
+        return $returnCode === 0;
+    }
+}
+
+// ==================== EXEMPLE D'UTILISATION ====================
+
+// Initialisation du gestionnaire
+$gestionnaire = new GestionnaireAttestation('modele_attestation.docx');
+
+// Ajout de conditions personnalisées
+$gestionnaire->ajouterCondition('Utilisateur connecté', function() {
+    return isset($_SESSION['utilisateur_id']);
+});
+
+$gestionnaire->ajouterCondition('Données valides', function() use ($_POST) {
+    return !empty($_POST['nom']) && !empty($_POST['prenom']) && !empty($_POST['date']);
+});
+
+$gestionnaire->ajouterCondition('Droits vérifiés', function() {
+    // Vérification des droits dans la base de données
+    // (code factice pour l'exemple)
+    return true;
+});
+
+// Traitement du formulaire
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    session_start();
+    
+    // Données à injecter dans le modèle Word
+    $donnees = [
+        'nom' => $_POST['nom'],
+        'prenom' => $_POST['prenom'],
+        'date' => $_POST['date'],
+        'lieu' => $_POST['lieu'],
+        'motif' => $_POST['motif'],
+        'date_emission' => date('d/m/Y'),
+        // Ajouter d'autres champs selon votre modèle
+    ];
+    
+    // Génération de l'attestation
+    $fichierAttestation = $gestionnaire->genererAttestation($donnees, 'pdf');
+    
+    if ($fichierAttestation) {
+        // Téléchargement du PDF
+        header('Content-Type: application/pdf');
+        header('Content-Disposition: attachment; filename="' . basename($fichierAttestation) . '"');
+        readfile($fichierAttestation);
+        exit;
+    } else {
+        $erreur = "Erreur lors de la génération de l'attestation.";
+    }
+}
+?>
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Générateur d'Attestation</title>
+    <style>
+        :root {
+            --primary: #3498db;
+            --primary-dark: #2980b9;
+            --secondary: #2c3e50;
+            --light: #ecf0f1;
+            --danger: #e74c3c;
+            --success: #2ecc71;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f7fa;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        header {
+            background: var(--secondary);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        
+        .description {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+        
+        .form-container {
+            padding: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--secondary);
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: border 0.3s;
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 14px 28px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            text-align: center;
+            transition: background 0.3s;
+        }
+        
+        .btn:hover {
+            background: var(--primary-dark);
+        }
+        
+        .btn-block {
+            display: block;
+            width: 100%;
+        }
+        
+        .alert {
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+        }
+        
+        .alert-danger {
+            background: #ffeaea;
+            color: var(--danger);
+            border: 1px solid #ffc9c9;
+        }
+        
+        .conditions {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 6px;
+            margin-top: 30px;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .conditions h3 {
+            margin-bottom: 10px;
+            color: var(--secondary);
+        }
+        
+        .conditions ul {
+            padding-left: 20px;
+        }
+        
+        .conditions li {
+            margin-bottom: 8px;
+        }
+        
+        @media (max-width: 600px) {
+            .form-container {
+                padding: 20px;
+            }
+            
+            input, select, textarea {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Générateur d'Attestation</h1>
+            <p class="description">Générez votre attestation personnalisée à partir de notre modèle Word</p>
+        </header>
+        
+        <div class="form-container">
+            <?php if (isset($erreur)): ?>
+                <div class="alert alert-danger">
+                    <?php echo htmlspecialchars($erreur); ?>
+                </div>
+            <?php endif; ?>
+            
+            <form method="POST" action="">
+                <div class="form-group">
+                    <label for="nom">Nom *</label>
+                    <input type="text" id="nom" name="nom" required value="<?php echo isset($_POST['nom']) ? htmlspecialchars($_POST['nom']) : ''; ?>">
+                </div>
+                
+                <div class="form-group">
+                    <label for="prenom">Prénom *</label>
+                    <input type="text" id="prenom" name="prenom" required value="<?php echo isset($_POST['prenom']) ? htmlspecialchars($_POST['prenom']) : ''; ?>">
+                </div>
+                
+                <div class="form-group">
+                    <label for="date">Date de l'événement *</label>
+                    <input type="date" id="date" name="date" required value="<?php echo isset($_POST['date']) ? htmlspecialchars($_POST['date']) : ''; ?>">
+                </div>
+                
+                <div class="form-group">
+                    <label for="lieu">Lieu</label>
+                    <input type="text" id="lieu" name="lieu" value="<?php echo isset($_POST['lieu']) ? htmlspecialchars($_POST['lieu']) : ''; ?>">
+                </div>
+                
+                <div class="form-group">
+                    <label for="motif">Motif de l'attestation</label>
+                    <textarea id="motif" name="motif" rows="3"><?php echo isset($_POST['motif']) ? htmlspecialchars($_POST['motif']) : ''; ?></textarea>
+                </div>
+                
+                <button type="submit" class="btn btn-block">Générer l'attestation en PDF</button>
+            </form>
+            
+            <div class="conditions">
+                <h3>Conditions de génération :</h3>
+                <ul>
+                    <li>Vous devez être connecté à votre compte</li>
+                    <li>Tous les champs obligatoires doivent être remplis</li>
+                    <li>Vos droits doivent être validés dans notre système</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,4 +1,8 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+// ...existing code...
 require_once "../config.php"; require_login();
 $u = current_user();
 $eligible = true; // TODO: calculer selon règles (toutes tâches + QCM >= 65%)
